@@ -62,7 +62,7 @@ $parent_menus = get_all('categories',$options_parent_menu);
     <div class="header-bottom">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><h1>Fashion Store</h1></a>
+                <a href="home"><h1>Fashion Store</h1></a>
             </div>
             <div class="top-nav">
                 <ul class="memenu skyblue">
