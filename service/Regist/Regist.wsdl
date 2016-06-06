@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:Regist"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  name="Regist" targetNamespace="urn:Regist" >
+    <wsdl:types>
+        <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Regist">
+            <xsd:complexType name="RegistResponse">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="process" type="xsd:string"></xsd:element>
+                    <xsd:element minOccurs="0" name="token" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="RegistRequest">
+                <xsd:sequence>
+                    <xsd:element name="email" type="xsd:string"></xsd:element>
+                    <xsd:element name="name" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="DoRegistRequest">
+        <wsdl:part type="tns:RegistRequest" name="request"/>
+    </wsdl:message>
+    <wsdl:message name="DoRegistResponse">
+        <wsdl:part type="tns:RegistResponse" name="return"/>
+    </wsdl:message>
+
+    <wsdl:portType name="RegistPort">
+        <wsdl:operation name="Check">
+            <wsdl:input message="tns:DoRegistRequest"/>
+            <wsdl:output message="tns:DoRegistResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="RegistBinding" type="tns:RegistPort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Check">
+            <soap:operation soapAction="urn:RegistAction"/>
+            <wsdl:input>
+                <soap:body use="encoded" namespace="urn:Regist"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" namespace="urn:Regist"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="Regist">
+        <wsdl:port name="Regist" binding="tns:RegistBinding">
+            <soap:address location="http://localhost/shoponline/service/Regist/RegistController.php"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
