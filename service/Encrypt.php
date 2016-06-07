@@ -3,11 +3,12 @@
 class Encrypt
 {
 	public $sign = 'huylv';
-	public function Encode($email)
+	public function Encode($email, $pass = '')
 	{
 		$info = array(
 			"email" => md5($email),
-			"time" => time() + 30*24*60,
+			"time" => $pass ? time() + 30*60 : time() + 30*24*60,
+			"password" => $pass,
 		);
 		$info = json_encode($info);
 		$info = base64_encode($info);
