@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:Users"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  name="Users" targetNamespace="urn:Users" >
+    <!--khai báo giá trị các biến (response - request)-->
+    <wsdl:types>
+        <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Users">
+            <xsd:complexType name="UsersResponse">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="process" type="xsd:string"></xsd:element>
+                    <xsd:element minOccurs="0" name="code" type="xsd:string"></xsd:element>
+                    <xsd:element minOccurs="0" name="data" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="UsersRequest">
+                <xsd:sequence>
+                    <xsd:element name="email" type="xsd:string"></xsd:element>
+                    <xsd:element name="pass" type="xsd:string"></xsd:element>
+                    <xsd:element name="code" type="xsd:string"></xsd:element>
+                    <xsd:element name="token" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="DoUsersRequest">
+        <wsdl:part type="tns:UsersRequest" name="request"/>
+    </wsdl:message>
+    <wsdl:message name="DoUsersResponse">
+        <wsdl:part type="tns:UsersResponse" name="response"/>
+    </wsdl:message>
+
+    <wsdl:portType name="UsersPort">
+        <wsdl:operation name="Check">
+            <wsdl:input message="tns:DoUsersRequest"/>
+            <wsdl:output message="tns:DoUsersResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="UsersBinding" type="tns:UsersPort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Check">
+            <soap:operation soapAction="urn:UsersAction"/>
+            <wsdl:input>
+                <soap:body use="encoded" namespace="urn:Users"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" namespace="urn:Users"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="Users">
+        <wsdl:port name="UsersPort" binding="tns:UsersBinding">
+            <soap:address location="http://localhost/shoponline/service/Users/UsersController.php"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

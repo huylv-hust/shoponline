@@ -22,16 +22,22 @@ class Regist extends SoapServer {
 
 				if($de_code['email'] && $de_code['time'] >= time()) {
 					//đã đăng ký và còn hạn sử dụng
-					$response->process = 0;
+					if ($db->Update($email, $name, $token)) {
+						//update
+						$mail->send_gmail($email, $name, $subject = 'TEST MAIL', $token);
+						$response->process = 1;
+					} else {
+						$response->process = 0;
+					}
 				}
 
 				if($de_code['email'] && $de_code['time'] < time()) {
 					//đã đăng ký và hết hạn sử dụng
 					$token = $encrypt->Encode($email);
-					if ($db->Regist($email, $name, $token)) {
+					if ($db->Update($email, $name, $token)) {
+						//đăng ký lại
 						$mail->send_gmail($email, $name, $subject = 'TEST MAIL', $token);
 						$response->process = 1;
-						$response->token = $token;
 					} else {
 						$response->process = 0;
 					}
@@ -42,11 +48,12 @@ class Regist extends SoapServer {
 				if ($db->Regist($email, $name, $token)) {
 					$mail->send_gmail($email, $name, $subject = 'TEST MAIL', $token);
 					$response->process = 1;
-					$response->token = $token;
 				} else {
 					$response->process = 0;
 				}
 			}
+		}else{
+			$response->process = 0;
 		}
 
 		return $response;

@@ -13,6 +13,13 @@ class Database {
 
 		return $query;
 	}
+
+	public function Update($email, $name, $token){
+		$sql = "UPDATE regist SET email = '".$email."',name = '".$name."',token = '".$token."'";
+		$query = mysql_query($sql);
+
+		return $query;
+	}
 	
 	public function CheckRegist($email){
 		$sql = "SELECT * FROM regist WHERE email = '".$email."'";
@@ -23,5 +30,12 @@ class Database {
 			$token = $row['token'];
 		}
 		return $token;
+	}
+
+	public function CheckUser($email, $password){
+		$sql = "SELECT * FROM user WHERE username = '".$email."' AND password = '".$password."'";
+		$query = mysql_query($sql);
+		
+		return $query;
 	}
 }

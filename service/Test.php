@@ -12,17 +12,20 @@ class Test{
 		$response = new Response();
 		$mail = new Mail();
 
-		$email = 'tuananhcvp@gmail.com';
+		$email = 'levanhuy93@gmail.com';
+		$password = '123456';
+		$token = 'ZXlKemFXZHVJam9pYUhWNWJIWWlmUT09ZXlKbGJXRnBiQ0k2SWpUX3MyX0hpTldFelpHVTRaREptWXpBelptTTJOVGxqTXpRM01XSTNaRGN3WVdReklpd2lkR2xIX3MyX1RaU0k2TVRRMk5UVXdOVFF6TlN3aWNHRnpjM2R2Y21RaU9pSWlmUT09';
+
 
 		if($email) {
-			$en_code = $encrypt->Encode($email);
+			$en_code = $encrypt->Encode($email, $password);
 			$de_code = $encrypt->Decode($en_code);
 			$token = $db->CheckRegist($email);
 
-			$mail->send_gmail($email, 'Tuan Anh', 'TEST MAIL', $token);
+			//$mail->send_gmail($email, 'Tuan Anh', 'TEST MAIL', $token);
+			//var_dump($db->CheckUser($email,$password,$token));die;
 			var_dump($en_code);
-			var_dump($de_code);
-			var_dump(time());
+			//var_dump(time());
 		}
 
 		return $response;

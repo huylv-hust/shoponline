@@ -7,7 +7,6 @@
             <xsd:complexType name="RegistResponse">
                 <xsd:sequence>
                     <xsd:element minOccurs="0" name="process" type="xsd:string"></xsd:element>
-                    <xsd:element minOccurs="0" name="token" type="xsd:string"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
 
