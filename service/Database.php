@@ -15,7 +15,7 @@ class Database {
 	}
 
 	public function Update($email, $name, $token){
-		$sql = "UPDATE regist SET email = '".$email."',name = '".$name."',token = '".$token."'";
+		$sql = "UPDATE regist SET email = '".$email."',name = '".$name."',token = '".$token."' WHERE email = '".$email."'";
 		$query = mysql_query($sql);
 
 		return $query;
@@ -24,12 +24,9 @@ class Database {
 	public function CheckRegist($email){
 		$sql = "SELECT * FROM regist WHERE email = '".$email."'";
 		$query = mysql_query($sql);
-		$token = '';
+		$row = mysql_fetch_array($query);
 
-		while($row = mysql_fetch_array($query)) {
-			$token = $row['token'];
-		}
-		return $token;
+		return $row['token'];
 	}
 
 	public function CheckUser($email, $password){
@@ -39,15 +36,35 @@ class Database {
 		return $query;
 	}
 	
-	public function getUser($data = []){
+	public function getUser($filter = []){
 		$where = 1;
+		if(isset($filter['id']) && $filter['id']) {
+			$where .= " AND id = '".$filter['id']."'";
+		}
 		$sql = "SELECT * FROM user WHERE ".$where;
 		$query = mysql_query($sql);
 		while ($row = mysql_fetch_assoc($query))
 		{
 			$data[] = $row;
 		}
-		
+
 		return $data;
+	}
+
+	public function createUser($data = []){
+		if(!empty($data)) {
+			$col = '';
+			$val = '';
+			foreach($data as $k => $v) {
+				$col .= $k.',';
+				$val .= "'".$v."',";
+			}
+			$col = rtrim($col, ',');
+			$val = rtrim($val, ',');
+			$sql = "INSERT INTO user (".$col.") VALUES (".$val.")";
+			$query = mysql_query($sql);
+
+			return $query;
+		}
 	}
 }

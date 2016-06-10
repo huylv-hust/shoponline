@@ -16,6 +16,7 @@ class Users extends SoapServer {
 		$code = $request->code;
 		$token = $request->token;
 		$data = $request->data;
+		$id = $request->id;
 
 		if($token && !$code) {
 			//login
@@ -40,17 +41,28 @@ class Users extends SoapServer {
 		}
 		
 		elseif($code && !$token) {
-			//list, tạo mới hoặc edit
-			if(!$data) {
-				if($db->getUser()) {
-					$response->process = 1;
-					$response->message = 'Lấy User thành công';
-					$response->code = $code;
-					$response->data = json_encode($db->getUser());
+			if(!$id) {
+				if(!$data) {
+					//List user
+					if($db->getUser()) {
+						$response->process = 1;
+						$response->message = 'Lấy User thành công';
+						$response->code = $code;
+						$response->data = json_encode($db->getUser());
+					}else{
+						$response->process = 0;
+						$response->message = 'Không lấy được User';
+					}
 				}else{
-					$response->process = 0;
-					$response->message = 'Không lấy được User';
+					//Tạo mới user
+					if($db->createUser(json_decode($data,true))) {
+						$response->process = 1;
+						$response->message = 'Tạo User thành công';
+						$response->code = $code;
+					}
 				}
+			}else{
+				//Update
 			}
 		}else {
 			//lỗi
