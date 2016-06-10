@@ -38,4 +38,16 @@ class Database {
 		
 		return $query;
 	}
+	
+	public function getUser($data = []){
+		$where = 1;
+		$sql = "SELECT * FROM user WHERE ".$where;
+		$query = mysql_query($sql);
+		while ($row = mysql_fetch_assoc($query))
+		{
+			$data[] = $row;
+		}
+		
+		return $data;
+	}
 }

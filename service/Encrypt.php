@@ -7,7 +7,7 @@ class Encrypt
 	{
 		$info = array(
 			"email" => md5($email),
-			"time" => $pass ? time() + 30*60 : time() + 30*24*60,
+			"time" => $pass ? time() + 30*60 : time() + 30*24*3600,
 			"password" => $pass,
 		);
 		$info = json_encode($info);

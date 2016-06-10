@@ -26,8 +26,11 @@ class Regist extends SoapServer {
 						//update
 						$mail->send_gmail($email, $name, $subject = 'TEST MAIL', $token);
 						$response->process = 1;
+						$response->message = 'Update thông tin thành công';
 					} else {
 						$response->process = 0;
+						$response->message = 'Update không thành công';
+						
 					}
 				}
 
@@ -38,8 +41,10 @@ class Regist extends SoapServer {
 						//đăng ký lại
 						$mail->send_gmail($email, $name, $subject = 'TEST MAIL', $token);
 						$response->process = 1;
+						$response->message = 'Đăng ký lại thành công';
 					} else {
 						$response->process = 0;
+						$response->message = 'Đăng ký lại không thành công';
 					}
 				}
 			}else{
@@ -48,8 +53,10 @@ class Regist extends SoapServer {
 				if ($db->Regist($email, $name, $token)) {
 					$mail->send_gmail($email, $name, $subject = 'TEST MAIL', $token);
 					$response->process = 1;
+					$response->message = 'Đăng ký thành công';
 				} else {
 					$response->process = 0;
+					$response->message = 'Đăng ký không thành công';
 				}
 			}
 		}else{

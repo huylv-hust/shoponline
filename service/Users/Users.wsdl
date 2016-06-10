@@ -8,6 +8,7 @@
             <xsd:complexType name="UsersResponse">
                 <xsd:sequence>
                     <xsd:element minOccurs="0" name="process" type="xsd:string"></xsd:element>
+                    <xsd:element minOccurs="0" name="message" type="xsd:string"></xsd:element>
                     <xsd:element minOccurs="0" name="code" type="xsd:string"></xsd:element>
                     <xsd:element minOccurs="0" name="data" type="xsd:string"></xsd:element>
                 </xsd:sequence>

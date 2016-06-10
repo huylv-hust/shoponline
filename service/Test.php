@@ -14,17 +14,19 @@ class Test{
 
 		$email = 'levanhuy93@gmail.com';
 		$password = '123456';
-		$token = 'ZXlKemFXZHVJam9pYUhWNWJIWWlmUT09ZXlKbGJXRnBiQ0k2SWpUX3MyX0hpTldFelpHVTRaREptWXpBelptTTJOVGxqTXpRM01XSTNaRGN3WVdReklpd2lkR2xIX3MyX1RaU0k2TVRRMk5UVXdOVFF6TlN3aWNHRnpjM2R2Y21RaU9pSWlmUT09';
+		$token = 'ZXlKemFXZHVJam9pYUhWNWJIWWlmUT09ZXlKbGJXRnBiQ0k2SWpUX3MyX0hpTldFelpHVTRaREptWXpBelptTTJOVGxqTXpRM01XSTNaRGN3WVdReklpd2lkR2xIX3MyX1RaU0k2TVRRMk9ERXlORGt5TUN3aWNHRnpjM2R2Y21RaU9pSWlmUT09';
 
 
 		if($email) {
+			$data = $db->getUser();
 			$en_code = $encrypt->Encode($email, $password);
 			$de_code = $encrypt->Decode($en_code);
 			$token = $db->CheckRegist($email);
 
+			var_dump($data);die;
 			//$mail->send_gmail($email, 'Tuan Anh', 'TEST MAIL', $token);
 			//var_dump($db->CheckUser($email,$password,$token));die;
-			var_dump($en_code);
+			//var_dump($en_code);
 			//var_dump(time());
 		}
 

@@ -17,7 +17,7 @@ class Users extends SoapServer {
 		$token = $request->token;
 		$data = $request->data;
 
-		if($token) {
+		if($token && !$code) {
 			//login
 			$de_code = $encrypt->Decode($token);
 			if($de_code['email'] && $de_code['time'] >= time()) {
@@ -25,19 +25,37 @@ class Users extends SoapServer {
 				if($db->CheckUser($email, $password)) {
 					//đăng nhập thành công
 					$response->process = 1;
+					$response->message = 'Đăng nhập thành công';
 					$response->code = $encrypt->Encode($email, $password);
-				}else{
+				}else {
 					//không đăng nhập được
 					$response->process = 0;
+					$response->message = 'Đăng nhập không thành công';
 				}
-			}else{
+			}else {
 				//hết hạn hoặc chưa đăng ký
 				$response->process = 0;
+				$response->message = 'Hết thời gian sử dụng hoặc chưa đăng ký';
 			}
 		}
 		
-		if($code) {
+		elseif($code && !$token) {
 			//list, tạo mới hoặc edit
+			if(!$data) {
+				if($db->getUser()) {
+					$response->process = 1;
+					$response->message = 'Lấy User thành công';
+					$response->code = $code;
+					$response->data = json_encode($db->getUser());
+				}else{
+					$response->process = 0;
+					$response->message = 'Không lấy được User';
+				}
+			}
+		}else {
+			//lỗi
+			$response->process = 0;
+			$response->message = 'Xảy ra lỗi';
 		}
 
 		return $response;
