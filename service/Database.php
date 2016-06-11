@@ -29,11 +29,15 @@ class Database {
 		return $row['token'];
 	}
 
-	public function CheckUser($email, $password){
-		$sql = "SELECT * FROM user WHERE username = '".$email."' AND password = '".$password."'";
+	public function CheckUser($email, $password = ''){
+		if($password){
+			$sql = "SELECT * FROM user WHERE username = '".$email."' AND password = '".$password."'";
+		}else{
+			$sql = "SELECT * FROM user WHERE username = '".$email."'";
+		}
 		$query = mysql_query($sql);
-		
-		return $query;
+
+		return mysql_fetch_assoc($query);;
 	}
 	
 	public function getUser($filter = []){
@@ -66,5 +70,20 @@ class Database {
 
 			return $query;
 		}
+	}
+
+	public function updateUser($data = [], $id){
+		if(!empty($data)) {
+			$val = '';
+			foreach($data as $k => $v) {
+				$val .= $k." = '".$v."',";
+			}
+			$val = rtrim($val, ',');
+		}
+
+		$sql = "UPDATE user SET ".$val." WHERE id = '".$id."'";
+		$query = mysql_query($sql);
+
+		return $query;
 	}
 }

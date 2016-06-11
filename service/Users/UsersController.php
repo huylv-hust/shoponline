@@ -52,17 +52,43 @@ class Users extends SoapServer {
 					}else{
 						$response->process = 0;
 						$response->message = 'Không lấy được User';
+						$response->code = $code;
 					}
 				}else{
 					//Tạo mới user
-					if($db->createUser(json_decode($data,true))) {
+					if(!$db->CheckUser(json_decode($data,true)['username']) && $db->createUser(json_decode($data,true))) {
 						$response->process = 1;
 						$response->message = 'Tạo User thành công';
+						$response->code = $code;
+					}else{
+						$response->process = 0;
+						$response->message = 'Không tạo được User';
 						$response->code = $code;
 					}
 				}
 			}else{
-				//Update
+				if(!$data) {
+					//List 1 user
+					if($db->getUser(['id' => $id])) {
+						$response->process = 1;
+						$response->message = 'Lấy 1 User thành công';
+						$response->code = $code;
+						$response->data = json_encode($db->getUser(['id' => $id]));
+					}else{
+						$response->process = 0;
+						$response->message = 'Không lấy được 1 User';
+					}
+				}else{
+					//Update
+					if($db->updateUser(json_decode($data, true), $id)) {
+						$response->process = 1;
+						$response->message = 'Update User thành công';
+						$response->code = $code;
+					}else{
+						$response->process = 0;
+						$response->message = 'Không Update được User';
+					}
+				}
 			}
 		}else {
 			//lỗi

@@ -31,8 +31,10 @@ class Test{
 				"phone" => "0984787652",
 				"role"  => "1",
 			];
-			var_dump(json_encode($data));die;
-			$token = $db->createUser($data);
+
+			$json = '{"username":"thomvt.93@gmail.com","password":"123456","name":"Vu Thom","address":"3D Duy Tan, Cau Giay, Ha Noi","phone":"01767347769","role":"1"}';
+			//var_dump(json_decode($json, true));die;
+			$token = $db->CheckUser(json_decode($json, true)['username']);
 
 			var_dump($token);die;
 			//$mail->send_gmail($email, 'Tuan Anh', 'TEST MAIL', $token);
