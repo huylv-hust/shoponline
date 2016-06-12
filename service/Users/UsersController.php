@@ -17,13 +17,14 @@ class Users extends SoapServer {
 		$token = $request->token;
 		$data = $request->data;
 		$id = $request->id;
+		$remove = $request->remove;
 
 		if($token && !$code) {
 			//login
 			$de_code = $encrypt->Decode($token);
 			if($de_code['email'] && $de_code['time'] >= time()) {
 				//đã đăng ký và còn hạn sử dụng
-				if($db->CheckUser($email, $password)) {
+				if($db->checkUser($email, $password)) {
 					//đăng nhập thành công
 					$response->process = 1;
 					$response->message = 'Đăng nhập thành công';
@@ -41,54 +42,65 @@ class Users extends SoapServer {
 		}
 		
 		elseif($code && !$token) {
-			if(!$id) {
-				if(!$data) {
-					//List user
-					if($db->getUser()) {
-						$response->process = 1;
-						$response->message = 'Lấy User thành công';
-						$response->code = $code;
-						$response->data = json_encode($db->getUser());
-					}else{
-						$response->process = 0;
-						$response->message = 'Không lấy được User';
-						$response->code = $code;
+			$de_code = $encrypt->Decode($code);
+			if($de_code['email'] && $de_code['time'] >= time()) {
+				if(!$id) {
+					if(!$data) {
+						//List user
+						if($db->getUser()) {
+							$response->process = 1;
+							$response->message = 'Lấy User thành công';
+							$response->data = json_encode($db->getUser());
+						}else {
+							$response->process = 0;
+							$response->message = 'Không lấy được User';
+						}
+					}else {
+						//Tạo mới user
+						if(!$db->checkUser(json_decode($data,true)['username']) && $db->createUser(json_decode($data,true))) {
+							$response->process = 1;
+							$response->message = 'Tạo User thành công';
+						}else {
+							$response->process = 0;
+							$response->message = 'Không tạo được User';
+						}
 					}
-				}else{
-					//Tạo mới user
-					if(!$db->CheckUser(json_decode($data,true)['username']) && $db->createUser(json_decode($data,true))) {
-						$response->process = 1;
-						$response->message = 'Tạo User thành công';
-						$response->code = $code;
-					}else{
-						$response->process = 0;
-						$response->message = 'Không tạo được User';
-						$response->code = $code;
+				}else {
+					if(!$data) {
+						if(!$remove) {
+							//List 1 user
+							if($db->getUser(['id' => $id])) {
+								$response->process = 1;
+								$response->message = 'Lấy 1 User thành công';
+								$response->data = json_encode($db->getUser(['id' => $id]));
+							}else {
+								$response->process = 0;
+								$response->message = 'Không lấy được 1 User';
+							}
+						}else {
+							//remove
+							if($db->removeUser($id)) {
+								$response->process = 1;
+								$response->message = 'Xóa Product thành công';
+							}else {
+								$response->process = 0;
+								$response->message = 'Không xóa được Product';
+							}
+						}
+					}else {
+						//Update
+						if($db->updateUser(json_decode($data, true), $id)) {
+							$response->process = 1;
+							$response->message = 'Update User thành công';
+						}else {
+							$response->process = 0;
+							$response->message = 'Không Update được User';
+						}
 					}
 				}
-			}else{
-				if(!$data) {
-					//List 1 user
-					if($db->getUser(['id' => $id])) {
-						$response->process = 1;
-						$response->message = 'Lấy 1 User thành công';
-						$response->code = $code;
-						$response->data = json_encode($db->getUser(['id' => $id]));
-					}else{
-						$response->process = 0;
-						$response->message = 'Không lấy được 1 User';
-					}
-				}else{
-					//Update
-					if($db->updateUser(json_decode($data, true), $id)) {
-						$response->process = 1;
-						$response->message = 'Update User thành công';
-						$response->code = $code;
-					}else{
-						$response->process = 0;
-						$response->message = 'Không Update được User';
-					}
-				}
+			}else {
+				$response->process = 0;
+				$response->message = 'Hết thời gian sử dụng';
 			}
 		}else {
 			//lỗi

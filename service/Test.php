@@ -18,6 +18,8 @@ class Test{
 
 		$user = '[{"username":"levanhuy93@gmail.com","password":"123456","name":"Le Huy","address":"3D Duy Tan, Cau Giay, Ha Noi\r\n","phone":"0984787652","role":"1"}]';
 
+		$code ='ZXlKemFXZHVJam9pYUhWNWJIWWlmUT09ZXlKbGJXRnBiQ0k2SWpUX3MyX0hpTldFelpHVTRaREptWXpBelptTTJOVGxqTXpRM01XSTNaRGN3WVdReklpd2lkR2xIX3MyX1RaU0k2TVRRMk9ETXhNRGc0TWl3aWNHRnpjM2R2Y21RaU9tNTFiR3g5';
+
 		if($email) {
 			//$data = $db->getUser();
 			//$en_code = $encrypt->Encode($email, $password);
@@ -34,9 +36,10 @@ class Test{
 
 			$json = '{"username":"thomvt.93@gmail.com","password":"123456","name":"Vu Thom","address":"3D Duy Tan, Cau Giay, Ha Noi","phone":"01767347769","role":"1"}';
 			//var_dump(json_decode($json, true));die;
-			$token = $db->CheckUser(json_decode($json, true)['username']);
+			$token = json_encode($db->getProduct());
 
 			var_dump($token);die;
+
 			//$mail->send_gmail($email, 'Tuan Anh', 'TEST MAIL', $token);
 			//var_dump($db->CheckUser($email,$password,$token));die;
 			//var_dump($en_code);

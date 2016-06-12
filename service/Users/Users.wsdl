@@ -22,6 +22,7 @@
                     <xsd:element name="token" type="xsd:string"></xsd:element>
                     <xsd:element name="data" type="xsd:string"></xsd:element>
                     <xsd:element name="id" type="xsd:string"></xsd:element>
+                    <xsd:element name="remove" type="xsd:string"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
         </xsd:schema>
