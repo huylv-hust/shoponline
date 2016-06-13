@@ -49,6 +49,10 @@ class Products extends SoapServer {
         elseif($code && !$token) {
             //Backend
             $de_code = $encrypt->Decode($code);
+            $filter = [
+                'id' => $id,
+                'type' => $type,
+            ];
             if($de_code['email'] && $de_code['time'] >= time()) {
                 if(!$id) {
                     if(!$data) {
@@ -56,7 +60,7 @@ class Products extends SoapServer {
                         if($db->getProduct()) {
                             $response->process = 1;
                             $response->message = 'List Product thành công';
-                            $response->data = json_encode($db->getProduct());
+                            $response->data = json_encode($db->getProduct($filter));
                         }else {
                             $response->process = 0;
                             $response->message = 'Không lấy được Product';
@@ -75,7 +79,7 @@ class Products extends SoapServer {
                     if(!$data) {
                         if(!$remove) {
                             //List 1 Product
-                            if($db->getProduct(['id' => $id])) {
+                            if($db->getProduct($filter)) {
                                 $response->process = 1;
                                 $response->message = 'Lấy 1 Product thành công';
                                 $response->data = json_encode($db->getProduct(['id' => $id]));

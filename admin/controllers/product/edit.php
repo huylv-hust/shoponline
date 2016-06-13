@@ -5,21 +5,21 @@ if (!empty($_POST)) {
     $name = escape($_POST['name']);
 
     $product = array(
-        'Id' => intval($_POST['id']),
-        'CategoryId' => intval($_POST['category_id']),
-        'SubCategoryId' => intval($_POST['subcategory_id']),
-        'Name' => $name,
+        'id' => intval($_POST['id']),
+        'category_id' => intval($_POST['category_id']),
+        'sub_category_id' => intval($_POST['sub_category_id']),
+        'name' => $name,
         'alias' => alias($name),
-        'Size' => escape($_POST['size']),
-        'TypeId' => intval($_POST['type_id']),
-        'Price' => intval($_POST['price']),
-        'Color' => escape($_POST['color']),
-        'Material' => escape($_POST['material']),
-        'Createdate' => escape($_POST['createdate']),
-        'IsSaleOff' => intval($_POST['status']),
-        'Percent_off' => intval($_POST['percent_off']),
-        'TotalView' => intval($_POST['totalview']),
-        'Description' => ($_POST['description'])
+        'size' => escape($_POST['size']),
+        'type' => intval($_POST['type_id']),
+        'price' => intval($_POST['price']),
+        'color' => escape($_POST['color']),
+        'material' => escape($_POST['material']),
+        'createdate' => escape($_POST['createdate']),
+        'sale' => intval($_POST['status']),
+        'percent_off' => intval($_POST['percent_off']),
+        'totalview' => intval($_POST['totalview']),
+        'description' => ($_POST['description'])
     );
     $pid = save('product', $product);
     //upload ảnh 1

@@ -1,12 +1,21 @@
 <?php
-//load model
-require_once('admin/models/products.php');
-if (isset($_POST['pid'])) {
-    foreach ($_POST['pid'] as $pid) {
-        $pid = intval($pid);
-        products_delete($pid);
-    }
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->data = '';
+$request->id = '';
+$request->type = 2;
+$request->category_id = '';
+$request->sub_category_id = '';
+$request->remove = '';
+
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
+
+if($response->process == 1){
+    $product_order = json_decode($response->data, true);
 }
+
 $title = 'Sản phẩm mới order';
-$user = $_SESSION['user'];
+
 require('admin/views/product/orderproduct.php');
