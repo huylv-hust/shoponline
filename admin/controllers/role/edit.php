@@ -8,7 +8,7 @@ $request->data = '';
 $request->id = '';
 $request->remove = '';
 
-if(isset($_GET['id']) && $_GET['id']) {
+if(isset($_GET['id']) && $_GET['id'] && !$_POST) {
     $request->id = $_GET['id'];
     $user = new Client('http://localhost/shoponline/service/Users/UsersController.php?wsdl');
     $response = $user->Check($request);
@@ -17,6 +17,7 @@ if(isset($_GET['id']) && $_GET['id']) {
 }
 
 if (!empty($_POST)) {
+    $request->id = isset($_POST['id']) ? $_POST['id'] : '';
     $request->data = json_encode($_POST);
     $user = new Client('http://localhost/shoponline/service/Users/UsersController.php?wsdl');
     $response = $user->Check($request);

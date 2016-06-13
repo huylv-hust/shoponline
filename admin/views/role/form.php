@@ -46,6 +46,7 @@
                        class="form-control" placeholder="Address">
             </div>
         </div>
+        <input type="hidden" name="id" value="<?php echo isset($role['id']) ? $role['id'] : ''?>">
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
                 <button type="submit"
