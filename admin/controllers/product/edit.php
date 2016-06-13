@@ -1,4 +1,39 @@
 <?php
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->data = '';
+$request->id = '';
+$request->type = '';
+$request->category_id = '';
+$request->sub_category_id = '';
+$request->remove = '';
+
+
+if(isset($_GET['id']) && $_GET['id'] && !$_POST) {
+    $request->id = $_GET['id'];
+    $user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+    $response = $user->Check($request);
+    if($response->process == 1) {
+        $product = json_decode($response->data, true)[0];
+    }
+//Category
+    $request->id = '';
+    $categories = new Client('http://localhost/shoponline/service/Category/CategoryController.php?wsdl');
+    $response = $categories->Check($request);
+    if($response->process == 1) {
+        $category = json_decode($response->data, true);
+    }
+//Sub Category
+    $request->id = '';
+    $sub_categories = new Client('http://localhost/shoponline/service/Category/SubController.php?wsdl');
+    $response = $sub_categories->Check($request);
+    if($response->process == 1) {
+        $sub_category = json_decode($response->data, true);
+    }
+}
+
+
 //load model
 require_once('admin/models/products.php');
 if (!empty($_POST)) {
@@ -90,25 +125,5 @@ if (!empty($_POST)) {
     header('location:admin.php?controller=product');
 }
 
-if (isset($_GET['pid'])) $pid = intval($_GET['pid']); else $pid=0;
-//data
-$title = ($pid==0) ? 'Thêm sản phẩm' : 'Sửa sản phẩm';
-$user = $_SESSION['user'];
-$product = get_a_record('product', $pid);
-//Category
-$categories = get_all('categories', array(
-    'select'=>'Id,Name',
-    'order_by' => 'Id'
-));
-//Sub category
-$subcategories = get_all('Subcategory', array(
-    'select'=>'Id,Name',
-    'order_by' => 'Name'
-));
-//Type
-$types = get_all('type', array(
-    'select'=>'Id,Name',
-    'order_by' => 'Id'
-));
-//load view
+
 require('admin/views/product/edit.php');

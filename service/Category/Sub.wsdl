@@ -57,7 +57,7 @@
 
     <wsdl:service name="Sub">
         <wsdl:port name="SubPort" binding="tns:SubBinding">
-            <soap:address location="http://localhost/shoponline/service/Sub/SubController.php"/>
+            <soap:address location="http://localhost/shoponline/service/Category/SubController.php"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>
