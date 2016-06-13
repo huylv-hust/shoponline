@@ -5,7 +5,7 @@ include '../Encrypt.php';
 include '../Response.php';
 include '../Mail/Mail.php';
 
-class Category extends SoapServer {
+class Sub extends SoapServer {
 	public function Check ($request){
 		$db = new Database();
 		$encrypt = new Encrypt();
@@ -18,17 +18,17 @@ class Category extends SoapServer {
 		$remove = $request->remove;
 		
 		if($token && !$code) {
-			//List Category Frontend
+			//List Sub Frontend
 			$de_code = $encrypt->Decode($token);
 			if($de_code['email'] && $de_code['time'] >= time()) {
 				//đã đăng ký và còn hạn sử dụng
-				if($db->getCategory()) {
+				if($db->getSub()) {
 					$response->process = 1;
-					$response->message = 'List Category thành công';
-					$response->data = json_encode($db->getCategory());
+					$response->message = 'List Sub thành công';
+					$response->data = json_encode($db->getSub());
 				}else {
 					$response->process = 0;
-					$response->message = 'Không lấy được Category';
+					$response->message = 'Không lấy được Sub';
 				}
 			}else {
 				//hết hạn hoặc chưa đăng ký
@@ -43,56 +43,56 @@ class Category extends SoapServer {
 			if($de_code['email'] && $de_code['time'] >= time()) {
 				if(!$id) {
 					if(!$data) {
-						//List Category
-						if($db->getCategory()) {
+						//List Sub
+						if($db->getSub()) {
 							$response->process = 1;
-							$response->message = 'List Category thành công';
-							$response->data = json_encode($db->getCategory());
+							$response->message = 'List Sub thành công';
+							$response->data = json_encode($db->getSub());
 						}else {
 							$response->process = 0;
-							$response->message = 'Không lấy được Category';
+							$response->message = 'Không lấy được Sub';
 						}
 					}else {
-						//Tạo mới Category
-						if($db->createCategory(json_decode($data,true))) {
+						//Tạo mới Sub
+						if($db->createSub(json_decode($data,true))) {
 							$response->process = 1;
-							$response->message = 'Tạo Category thành công';
+							$response->message = 'Tạo Sub thành công';
 						}else {
 							$response->process = 0;
-							$response->message = 'Không tạo được Category';
+							$response->message = 'Không tạo được Sub';
 						}
 					}
 				}else {
 					if(!$data) {
 						if(!$remove) {
-							//List 1 Category
-							if($db->getCategory(['id' => $id])) {
+							//List 1 Sub
+							if($db->getSub(['id' => $id])) {
 								$response->process = 1;
-								$response->message = 'Lấy 1 Category thành công';
-								$response->data = json_encode($db->getCategory(['id' => $id]));
+								$response->message = 'Lấy 1 Sub thành công';
+								$response->data = json_encode($db->getSub(['id' => $id]));
 							}else {
 								$response->process = 0;
-								$response->message = 'Không lấy được 1 Category';
+								$response->message = 'Không lấy được 1 Sub';
 							}
 						}else {
 							//remove
-							if($db->removeCategory($id)) {
+							if($db->removeSub($id)) {
 								$response->process = 1;
-								$response->message = 'Xóa Category thành công';
+								$response->message = 'Xóa Sub thành công';
 							}else {
 								$response->process = 0;
-								$response->message = 'Không xóa được Category';
+								$response->message = 'Không xóa được Sub';
 							}
 						}
 						
 					}else {
 						//Update
-						if($db->updateCategory(json_decode($data, true), $id)) {
+						if($db->updateSub(json_decode($data, true), $id)) {
 							$response->process = 1;
-							$response->message = 'Update Category thành công';
+							$response->message = 'Update Sub thành công';
 						}else {
 							$response->process = 0;
-							$response->message = 'Không Update được Category';
+							$response->message = 'Không Update được Sub';
 						}
 					}
 				}
@@ -110,6 +110,6 @@ class Category extends SoapServer {
 	}
 }
 
-$service = new Category('Category.wsdl');
-$service->setClass('Category');
+$service = new Sub('Sub.wsdl');
+$service->setClass('Sub');
 $service->handle();

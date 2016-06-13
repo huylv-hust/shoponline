@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once('lib/model.php');
+require_once('lib/Request.php');
+require_once('lib/Client.php');
 if(isset($_GET['controller'])) {
     $controller = $_GET['controller'];
 } else {

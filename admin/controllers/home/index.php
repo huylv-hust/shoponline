@@ -1,7 +1,7 @@
 <?php
 //data
 $title = 'Quản trị hệ thống';
-$user = $_SESSION['user'];
+$role = $_SESSION['role'];
 
 $optionsCom = array(
     'order_by' => 'id DESC'

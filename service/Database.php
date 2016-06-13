@@ -39,7 +39,7 @@ class Database {
 		}
 		$query = mysql_query($sql);
 
-		return mysql_fetch_assoc($query);;
+		return mysql_fetch_assoc($query);
 	}
 	
 	public function getUser($filter = []){
@@ -94,7 +94,7 @@ class Database {
 		if(isset($id) && $id) {
 			$where .= " AND id = '".$id."'";
 		}
-		$sql = "DELETE FROM user WHERE".$where;
+		$sql = "DELETE FROM user WHERE ".$where;
 		$query = mysql_query($sql);
 
 		return $query;
@@ -105,6 +105,18 @@ class Database {
 		$where = 1;
 		if(isset($filter['id']) && $filter['id']) {
 			$where .= " AND id = '".$filter['id']."'";
+		}
+		
+		if(isset($filter['type']) && $filter['type']) {
+			$where .= " AND type = '".$filter['type']."'";
+		}
+
+		if(isset($filter['category_id']) && $filter['category_id']) {
+			$where .= " AND category_id = '".$filter['category_id']."'";
+		}
+
+		if(isset($filter['sub_category_id']) && $filter['sub_category_id']) {
+			$where .= " AND sub_category_id = '".$filter['sub_category_id']."'";
 		}
 		$sql = "SELECT * FROM product WHERE ".$where;
 		$query = mysql_query($sql);
@@ -154,6 +166,124 @@ class Database {
 			$where .= " AND id = '".$id."'";
 		}
 		$sql = "DELETE FROM product WHERE".$where;
+		$query = mysql_query($sql);
+
+		return $query;
+	}
+
+//Category
+	public function getCategory($filter = []){
+		$where = "status = '1'";
+		if(isset($filter['id']) && $filter['id']) {
+			$where .= " AND id = '".$filter['id']."'";
+		}
+		$sql = "SELECT * FROM category WHERE ".$where;
+		$query = mysql_query($sql);
+		while ($row = mysql_fetch_assoc($query))
+		{
+			$data[] = $row;
+		}
+
+		return $data;
+	}
+
+	public function createCategory($data = []){
+		if(!empty($data)) {
+			$col = '';
+			$val = '';
+			foreach($data as $k => $v) {
+				$col .= $k.',';
+				$val .= "'".$v."',";
+			}
+			$col = rtrim($col, ',');
+			$val = rtrim($val, ',');
+			$sql = "INSERT INTO category (".$col.") VALUES (".$val.")";
+			$query = mysql_query($sql);
+
+			return $query;
+		}
+	}
+
+	public function updateCategory($data = [], $id){
+		if(!empty($data)) {
+			$val = '';
+			foreach($data as $k => $v) {
+				$val .= $k." = '".$v."',";
+			}
+			$val = rtrim($val, ',');
+		}
+
+		$sql = "UPDATE category SET ".$val." WHERE id = '".$id."'";
+		$query = mysql_query($sql);
+
+		return $query;
+	}
+
+	public function removeCategory($id = ''){
+		$where = 1;
+		if(isset($id) && $id) {
+			$where .= " AND id = '".$id."'";
+		}
+		$sql = "UPDATE category SET (status = '0') WHERE".$where;
+		$query = mysql_query($sql);
+
+		return $query;
+	}
+
+//Sub Category
+	public function getSub($filter = []){
+		$where = "status = '1'";
+		if(isset($filter['id']) && $filter['id']) {
+			$where .= " AND id = '".$filter['id']."'";
+		}
+		$sql = "SELECT * FROM subcategory WHERE ".$where;
+		$query = mysql_query($sql);
+		while ($row = mysql_fetch_assoc($query))
+		{
+			$data[] = $row;
+		}
+
+		return $data;
+	}
+
+	public function createSub($data = []){
+		if(!empty($data)) {
+			$col = '';
+			$val = '';
+			foreach($data as $k => $v) {
+				$col .= $k.',';
+				$val .= "'".$v."',";
+			}
+			$col = rtrim($col, ',');
+			$val = rtrim($val, ',');
+			$sql = "INSERT INTO subcategory (".$col.") VALUES (".$val.")";
+			$query = mysql_query($sql);
+
+			return $query;
+		}
+	}
+
+	public function updateSub($data = [], $id){
+		if(!empty($data)) {
+			$val = '';
+			foreach($data as $k => $v) {
+				$val .= $k." = '".$v."',";
+			}
+			$val = rtrim($val, ',');
+		}
+
+		$sql = "UPDATE subcategory SET ".$val." WHERE id = '".$id."'";
+		$query = mysql_query($sql);
+
+		return $query;
+	}
+
+	public function removeSub($id = ''){
+		$where = 1;
+		if(isset($id) && $id) {
+			$where .= " AND id = '".$id."'";
+		}
+		$sql = "UPDATE subcategory SET (status = '0') WHERE".$where;
 		$query = mysql_query($sql);
 
 		return $query;

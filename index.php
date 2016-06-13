@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('lib/model.php');
+require_once('lib/Request.php');
 require_once('website/models/cart.php');
 require "lib/header.php";
 require "lib/counter.php";

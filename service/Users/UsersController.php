@@ -12,7 +12,7 @@ class Users extends SoapServer {
 		$response = new Response();
 
 		$email = $request->email;
-		$password = $request->password;
+		$password = $request->pass;
 		$code = $request->code;
 		$token = $request->token;
 		$data = $request->data;
@@ -29,6 +29,7 @@ class Users extends SoapServer {
 					$response->process = 1;
 					$response->message = 'Đăng nhập thành công';
 					$response->code = $encrypt->Encode($email, $password);
+					$response->data = json_encode($db->checkUser($email, $password));
 				}else {
 					//không đăng nhập được
 					$response->process = 0;

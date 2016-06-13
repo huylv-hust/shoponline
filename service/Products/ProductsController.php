@@ -15,6 +15,9 @@ class Products extends SoapServer {
         $token = $request->token;
         $data = $request->data;
         $id = $request->id;
+        $type = $request->type;
+        $category_id = $request->category_id;
+        $sub_category_id = $request->sub_category_id;
         $remove = $request->remove;
 
         if($token && !$code) {
@@ -22,12 +25,17 @@ class Products extends SoapServer {
             $de_code = $encrypt->Decode($token);
             if($de_code['email'] && $de_code['time'] >= time()) {
                 //đã đăng ký và còn hạn sử dụng
-                if($db->getProduct()) {
+                $filter = [
+                    'id' => $id,
+                    'type' => $type,
+                    'category_id' => $category_id,
+                    'sub_category_id' => $sub_category_id,
+                ];
+                if($db->getProduct($filter)) {
                     $response->process = 1;
                     $response->message = 'List Product thành công';
                     $response->data = json_encode($db->getProduct());
                 }else {
-                    //không đăng nhập được
                     $response->process = 0;
                     $response->message = 'Không lấy được Product';
                 }

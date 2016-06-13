@@ -7,7 +7,6 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="admin.php">Trang Quản Trị</a>
-
     </div>
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
@@ -19,9 +18,9 @@
                     <a href="#">
                         <div>
                             <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
+                                <span class="pull-right text-muted">
+                                    <em>Yesterday</em>
+                                </span>
                         </div>
                         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
                     </a>
@@ -122,8 +121,8 @@
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="admin.php?controller=user&amp;action=info&amp;uid=<?php echo $user['Id'];?>"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-                <?php if ($user['RoleId']==1):?>
+                <li><a href="admin.php?controller=user&amp;action=info&amp;uid=<?php echo $_SESSION['info']['id'];?>"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                <?php if ($role == 1):?>
                     <li><a href="admin.php?controller=user&amp;action=list"><i class="fa fa-gear fa-fw"></i>List quản trị</a></li>
                     <li><a href="admin.php?controller=user&amp;action=add"><i class="fa fa-gear fa-fw"></i>Thêm quản trị</a></li>
                 <?php endif;?>
@@ -133,27 +132,25 @@
             </ul>
         </li>
     </ul>
-
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
                     <form id="product_form" method="post" action="admin.php?controller=product" role="form">
-                    <div class="input-group custom-search-form">
-                        <input id="search" name="search" type="text" class="form-control" placeholder="Tìm kiếm"/>
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                    </div>
-                        </form>
+                        <div class="input-group custom-search-form">
+                            <input id="search" name="search" type="text" class="form-control" placeholder="Tìm kiếm"/>
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                        </div>
+                    </form>
                 </li>
-
                 <li>
                     <a href="admin.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
-                <?php if ($user['RoleId']==1):?>
+                <?php if ($_SESSION['role'] == 1){?>
                     <li>
                         <a href="admin.php?controller=role"><i class="fa fa-cog fa-fw"></i> Quyền truy cập</a>
                     </li>
@@ -177,7 +174,7 @@
                             </li>
                         </ul>
                     </li>
-                <?php endif;?>
+                <?php }?>
                 <li>
                     <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Quản lý đơn hàng<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -192,7 +189,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li>
                     <a href="admin.php?controller=product"><i class="fa fa-folder-open fa-fw"></i>Quản lý sản phẩm <span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
@@ -205,39 +201,29 @@
                         <li>
                             <a href="admin.php?controller=product&amp;action=saleproduct">Sản phẩm khuyến mại</a>
                         </li>
-
                     </ul>
                 </li>
-
                 <li>
                     <a href="admin.php?controller=category"><i class="fa fa-folder-open fa-fw"></i>Quản lý danh mục sản phẩm</a>
                 </li>
-
                 <li>
                     <a href="admin.php?controller=group"><i class="fa fa-folder-open fa-fw"></i>Quản lý nhóm danh mục</a>
                 </li>
-
-
                 <li>
                     <a href="admin.php?controller=livesport"><i class="fa fa-youtube-play fa-fw"></i> Quản lý phát video</a>
                 </li>
-
                 <li>
                     <a href="admin.php?controller=comment"><i class="fa fa-comments-o fa-fw"></i>Quản lý bình luận</a>
                 </li>
-
                 <li>
                     <a href="admin.php?controller=feedback"><i class="fa fa-envelope-o fa-fw"></i>Phản hồi của khách hàng</a>
                 </li>
-
                 <li>
                     <a href="admin.php?controller=counter"><i class="fa fa-tasks fa-fw"></i> Thống kê online</a>
                 </li>
-
                 <li>
                     <a href="index.php" target="_blank"><i class="fa fa-home fa-fw"></i>Trang chủ<span class="fa arrow"></span></a>
                 </li>
-
             </ul>
         </div>
     </div>
