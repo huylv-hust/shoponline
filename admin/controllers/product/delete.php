@@ -7,6 +7,7 @@ $request->id = '';
 $request->type = '';
 $request->category_id = '';
 $request->sub_category_id = '';
+$request->name = '';
 $request->remove = '';
 
 if(isset($_GET['id']) && $_GET['id'] && !$_POST) {

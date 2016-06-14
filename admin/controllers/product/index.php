@@ -8,6 +8,7 @@ $request->id = '';
 $request->type = 1;
 $request->category_id = '';
 $request->sub_category_id = '';
+$request->name = '';
 $request->remove = '';
 
 $user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
@@ -26,6 +27,7 @@ $request->id = '';
 $request->type = 2;
 $request->category_id = '';
 $request->sub_category_id = '';
+$request->name = '';
 $request->remove = '';
 
 $user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
@@ -44,6 +46,7 @@ $request->id = '';
 $request->type = 3;
 $request->category_id = '';
 $request->sub_category_id = '';
+$request->name = '';
 $request->remove = '';
 
 $user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');

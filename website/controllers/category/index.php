@@ -1,43 +1,42 @@
 <?php
-$cid = intval($_GET['id']);
-$category = get_a_record('subcategory', $cid);
+//product
+$request = new Request();
+$request->code = '';
+$request->token = $_SESSION['token'];
+$request->data = '';
+$request->id = '';
+$request->type = '';
+$request->category_id = '';
+$request->sub_category_id = intval($_GET['id']);
+$request->name = '';
+$request->remove = '';
 
-if (!$category) {
-	show_404();
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
+
+if($response->process == 1){
+	$products = json_decode($response->data, true);
 }
 
-$categories = get_all('subcategory', array(
-	'select' => 'Id, Name',
-	'order_by' => 'Id ASC'
-));
+//category
+$request = new Request();
+$request->code = '';
+$request->token = $_SESSION['token'];
+$request->id = intval($_GET['id']);
+$request->parent = '';
+$request->data = '';
+$request->remove = '';
 
-if(isset($_GET['page'])) $page = intval($_GET['page']);
-        else $page = 1;
+$sub_categories = new Client('http://localhost/shoponline/service/Category/SubController.php?wsdl');
+$response = $sub_categories->Check($request);
 
-$page = ($page>0) ? $page : 1;
-$limit = 15;
-$offset = ($page - 1) * $limit;
-
-$options = array(
-	'where' => 'SubCategoryId ='.$cid,
-    'limit' => $limit,
-    'offset' => $offset,
-    'order_by' => 'Id DESC'
-);
-
-$url = 'category/'.$cid. '-' .$category['alias'] ;
-
-
-$total_rows = get_total('product', $options);
-$total = ceil($total_rows/$limit);
-
-$products = get_all('product', $options);
-$pagination = pagination($url, $page, $total);
-
-$subcategories = get_a_record('subcategory', $_GET["id"]);
-if ($subcategories['Id']!=0) {
-    $breadCrumb = $subcategories['Name'];
+if($response->process == 1) {
+	$sub_category = json_decode($response->data, true)[0];
 }
-$title = $category['Name'];
+
+if ($sub_category['id']!=0) {
+	$breadCrumb = $sub_category['name'];
+}
+$title = $sub_category['name'];
 //load view
 require('website/views/category/index.php');

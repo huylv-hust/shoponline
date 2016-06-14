@@ -18,6 +18,7 @@ class Products extends SoapServer {
         $type = $request->type;
         $category_id = $request->category_id;
         $sub_category_id = $request->sub_category_id;
+        $name = $request->name;
         $remove = $request->remove;
 
         if($token && !$code) {
@@ -30,11 +31,12 @@ class Products extends SoapServer {
                     'type' => $type,
                     'category_id' => $category_id,
                     'sub_category_id' => $sub_category_id,
+                    'name' => $name,
                 ];
                 if($db->getProduct($filter)) {
                     $response->process = 1;
                     $response->message = 'List Product thành công';
-                    $response->data = json_encode($db->getProduct());
+                    $response->data = json_encode($db->getProduct($filter));
                 }else {
                     $response->process = 0;
                     $response->message = 'Không lấy được Product';

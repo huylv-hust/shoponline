@@ -8,6 +8,7 @@ $request->parent = '';
 $request->type = '';
 $request->category_id = '';
 $request->sub_category_id = '';
+$request->name = '';
 $request->remove = '';
 
 //List

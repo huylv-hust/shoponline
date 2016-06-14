@@ -22,10 +22,10 @@ class Category extends SoapServer {
 			$de_code = $encrypt->Decode($token);
 			if($de_code['email'] && $de_code['time'] >= time()) {
 				//đã đăng ký và còn hạn sử dụng
-				if($db->getCategory()) {
+				if($db->getCategory(['id' => $id])) {
 					$response->process = 1;
 					$response->message = 'List Category thành công';
-					$response->data = json_encode($db->getCategory());
+					$response->data = json_encode($db->getCategory(['id' => $id]));
 				}else {
 					$response->process = 0;
 					$response->message = 'Không lấy được Category';

@@ -121,6 +121,10 @@ class Database {
 		if(isset($filter['sub_category_id']) && $filter['sub_category_id']) {
 			$where .= " AND sub_category_id = '".$filter['sub_category_id']."'";
 		}
+
+		if(isset($filter['name']) && $filter['name']) {
+			$where .= " AND name LIKE '%".$filter['name']."%'";
+		}
 		$sql = "SELECT * FROM product WHERE ".$where;
 		$query = mysql_query($sql);
 		while ($row = mysql_fetch_assoc($query))

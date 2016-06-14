@@ -23,6 +23,7 @@
                     <xsd:element name="type" type="xsd:string"></xsd:element>
                     <xsd:element name="category_id" type="xsd:string"></xsd:element>
                     <xsd:element name="sub_category_id" type="xsd:string"></xsd:element>
+                    <xsd:element name="name" type="xsd:string"></xsd:element>
                     <xsd:element name="remove" type="xsd:string"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
