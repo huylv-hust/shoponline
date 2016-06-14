@@ -18,6 +18,7 @@ if (!empty($_POST)) {
 
     if($response->process == 1){
         $_SESSION['user'] = $response->code;
+        $_SESSION['time'] = time() + 20*60;
         $_SESSION['info'] = json_decode($response->data, true);
         $_SESSION['role'] =  $_SESSION['info']['role'];
 

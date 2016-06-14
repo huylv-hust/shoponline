@@ -13,7 +13,7 @@ if(isset($_GET['action'])) {
 } else {
     $action = 'index';
 }
-if(!isset($_SESSION['user'])) {
+if(!isset($_SESSION['time']) || $_SESSION['time'] < time()) {
     $controller = 'home';
     $action = 'login';
 }

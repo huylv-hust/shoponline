@@ -3,22 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="96ecc0ff-1ffb-4a72-b856-23a94dacfcf7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/category/delete.php" afterPath="$PROJECT_DIR$/admin/controllers/category/delete.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/category/edit.php" afterPath="$PROJECT_DIR$/admin/controllers/category/edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/category/index.php" afterPath="$PROJECT_DIR$/admin/controllers/category/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/group/delete.php" afterPath="$PROJECT_DIR$/admin/controllers/group/delete.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/group/edit.php" afterPath="$PROJECT_DIR$/admin/controllers/group/edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/group/index.php" afterPath="$PROJECT_DIR$/admin/controllers/group/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/product/edit.php" afterPath="$PROJECT_DIR$/admin/controllers/product/edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/category/form.php" afterPath="$PROJECT_DIR$/admin/views/category/form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/category/index.php" afterPath="$PROJECT_DIR$/admin/views/category/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/group/form.php" afterPath="$PROJECT_DIR$/admin/views/group/form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/group/index.php" afterPath="$PROJECT_DIR$/admin/views/group/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/product/getcategory.php" afterPath="$PROJECT_DIR$/admin/views/product/getcategory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/Category/CategoryController.php" afterPath="$PROJECT_DIR$/service/Category/CategoryController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/Category/Sub.wsdl" afterPath="$PROJECT_DIR$/service/Category/Sub.wsdl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/Category/SubController.php" afterPath="$PROJECT_DIR$/service/Category/SubController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/Database.php" afterPath="$PROJECT_DIR$/service/Database.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.php" afterPath="$PROJECT_DIR$/admin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/home/login.php" afterPath="$PROJECT_DIR$/admin/controllers/home/login.php" />
     </list>
     <ignored path="eCommerce.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Database.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Database.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/service/Database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="290" column="58" selection-start-line="290" selection-start-column="58" selection-end-line="290" selection-end-column="58" />
+            <state relative-caret-position="105">
+              <caret line="273" column="40" selection-start-line="273" selection-start-column="40" selection-end-line="273" selection-end-column="40" />
               <folding>
                 <marker date="1465891580145" expanded="true" signature="269:356" placeholder="INSERT INTO regist... " />
                 <marker date="1465891580145" expanded="true" signature="469:574" placeholder="UPDATE regis... " />
@@ -73,6 +59,26 @@
                 <marker date="1465891580145" expanded="true" signature="6396:6437" placeholder="UPDATE categ... " />
                 <marker date="1465891580145" expanded="true" signature="6396:6438" placeholder="UPDATE subca... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/controllers/home/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -146,7 +152,6 @@
         <option value="$PROJECT_DIR$/404.php" />
         <option value="$PROJECT_DIR$/public/content/flexslider.css" />
         <option value="$PROJECT_DIR$/public/content/style.css" />
-        <option value="$PROJECT_DIR$/admin/controllers/home/login.php" />
         <option value="$PROJECT_DIR$/admin/controllers/user/add.php" />
         <option value="$PROJECT_DIR$/admin/controllers/user/changepassword.php" />
         <option value="$PROJECT_DIR$/lib/model.php" />
@@ -157,7 +162,6 @@
         <option value="$PROJECT_DIR$/website/controllers/cart/delete.php" />
         <option value="$PROJECT_DIR$/website/controllers/cart/send.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/admin.php" />
         <option value="$PROJECT_DIR$/public/javascript/common.js" />
         <option value="$PROJECT_DIR$/website/views/shared/header.php" />
         <option value="$PROJECT_DIR$/.htaccess" />
@@ -193,6 +197,8 @@
         <option value="$PROJECT_DIR$/admin/controllers/category/delete.php" />
         <option value="$PROJECT_DIR$/admin/controllers/group/delete.php" />
         <option value="$PROJECT_DIR$/service/Database.php" />
+        <option value="$PROJECT_DIR$/admin.php" />
+        <option value="$PROJECT_DIR$/admin/controllers/home/login.php" />
       </list>
     </option>
   </component>
@@ -263,100 +269,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Category" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="product" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="group" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -397,29 +309,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="group" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shoponline" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="category" />
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -545,11 +435,18 @@
       <option name="project" value="LOCAL" />
       <updated>1465885163924</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="done">
+      <created>1465891713954</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1465891713954</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40435000" />
+    <option name="totallyTimeSpent" value="41457000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="14" y="0" width="1344" height="744" extended-state="0" />
@@ -591,7 +488,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="product" />
     <MESSAGE value="done product" />
-    <option name="LAST_COMMIT_MESSAGE" value="done product" />
+    <MESSAGE value="done" />
+    <option name="LAST_COMMIT_MESSAGE" value="done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -600,20 +498,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/website/controllers/home/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/views/shared/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/website/views/shared/footer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="547">
@@ -979,8 +863,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/service/Database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="290" column="58" selection-start-line="290" selection-start-column="58" selection-end-line="290" selection-end-column="58" />
+        <state relative-caret-position="105">
+          <caret line="273" column="40" selection-start-line="273" selection-start-column="40" selection-end-line="273" selection-end-column="40" />
           <folding>
             <marker date="1465891580145" expanded="true" signature="269:356" placeholder="INSERT INTO regist... " />
             <marker date="1465891580145" expanded="true" signature="469:574" placeholder="UPDATE regis... " />
@@ -1009,6 +893,22 @@
             <marker date="1465891580145" expanded="true" signature="6396:6437" placeholder="UPDATE categ... " />
             <marker date="1465891580145" expanded="true" signature="6396:6438" placeholder="UPDATE subca... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/home/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
