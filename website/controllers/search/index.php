@@ -1,26 +1,21 @@
 
 <?php
-$keyword = $_GET["id"];
+$request = new Request();
+$request->code = '';
+$request->token = $_SESSION['token'];
+$request->data = '';
+$request->id = '';
+$request->type = '';
+$request->category_id = '';
+$request->sub_category_id = '';
+$request->name = $_GET["id"];
+$request->remove = '';
 
-if (isset($_GET['page'])) $page = intval($_GET['page']);
-else $page = 1;
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
 
-$page = ($page > 0) ? $page : 1;
-$limit = 15;
-$offset = ($page - 1) * $limit;
-$string = 'Name regexp='.$keyword;
-$options = array(
-    'where' => "Name REGEXP '" . ($keyword) . "'",
-    'limit' => $limit,
-    'offset' => $offset,
-    'order_by' => 'Id DESC'
-);
-$url = 'index.php?controller=search&q=' .$keyword;
-$total_rows = get_total('product', $options);
-$total = ceil($total_rows / $limit);
+if($response->process == 1){
+    $products = json_decode($response->data, true);
+}
 
-//data
-$products = get_all('product', $options);
-$pagination = pagination($url, $page, $total);
-//load view
 require('website/views/search/index.php');
