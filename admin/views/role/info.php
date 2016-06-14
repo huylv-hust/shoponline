@@ -6,7 +6,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="dataTable_wrapper">
-				<div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Quyền truy cập website</div>
+				<div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Thôn Tin Tài Khoản</div>
 				<div class="panel-body">
 					<form id="product-form" class="form-horizontal" method="post"
 					      action="admin.php?controller=role&amp;action=edit" enctype="multipart/form-data" role="form">

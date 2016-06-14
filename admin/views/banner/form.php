@@ -51,7 +51,7 @@
                 <label for="image" class="col-sm-3 control-label">Ảnh Banner</label>
 
                 <div class="col-sm-9">
-                    <input name="image" type="file" class="form-control" id="image" accept="image/*"/>
+                    <input name="image" type="file" class="" id="image" accept="image/*"/>
                     <?php if ($banner && is_file('public/upload/images/' . $banner['Image'])) {
                         echo '<image src="public/upload/images/' . $banner['Image'] . '?time=' . time() . '" style="max-width:200px;" />';
                     }

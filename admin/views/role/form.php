@@ -3,7 +3,7 @@
         margin: 10px 5px;
     }
 </style>
-<div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Thay Đổi Thông Tin</div>
+<div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Form Nhập Thông Tin</div>
 <div class="panel-body">
     <form id="product-form" class="form-horizontal" method="post"
           action="admin.php?controller=role&amp;action=edit" enctype="multipart/form-data" role="form">
