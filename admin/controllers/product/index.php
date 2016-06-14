@@ -1,25 +1,58 @@
 <?php
-//load model
-require_once('admin/models/products.php');
+//new
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->data = '';
+$request->id = '';
+$request->type = 1;
+$request->category_id = '';
+$request->sub_category_id = '';
+$request->remove = '';
 
-if (isset($_POST['search'])) {
-    header('location:admin.php?controller=product&search='.$_POST['search']);
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
+
+if($response->process == 1){
+    $products = json_decode($response->data, true);
 }
-if (isset($_POST['pid'])) {
-    foreach ($_POST['pid'] as $pid) {
-        $pid = intval($pid);
-        products_delete($pid);
-    }
+
+//order
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->data = '';
+$request->id = '';
+$request->type = 2;
+$request->category_id = '';
+$request->sub_category_id = '';
+$request->remove = '';
+
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
+
+if($response->process == 1){
+    $product_order = json_decode($response->data, true);
 }
-$url = 'admin.php?controller=product';
-if (isset($_GET['search'])) {
-    $search = escape($_GET['search']);
-    $options['where'] = "name LIKE '%$search%'";
-    $url = 'admin.php?controller=product&search='.$_GET['search'];
+
+//sale
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->data = '';
+$request->id = '';
+$request->type = 3;
+$request->category_id = '';
+$request->sub_category_id = '';
+$request->remove = '';
+
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
+
+if($response->process == 1){
+    $product_sale = json_decode($response->data, true);
 }
-//data
+
 $title = 'Sản phẩm';
-$user = $_SESSION['user'];
 
-//load view
 require('admin/views/product/index.php');
