@@ -77,7 +77,7 @@ class Category extends SoapServer {
 						}else {
 							//remove
 							if($db->removeCategory($id)) {
-								$response->process = 1;
+								$response->process = $db->removeCategory($id);
 								$response->message = 'Xóa Category thành công';
 							}else {
 								$response->process = 0;

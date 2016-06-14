@@ -4,6 +4,7 @@ $request->code = $_SESSION['user'];
 $request->token = '';
 $request->data = '';
 $request->id = '';
+$request->parent = '';
 $request->type = '';
 $request->category_id = '';
 $request->sub_category_id = '';
@@ -28,7 +29,7 @@ if($response->process == 1) {
 }
 //Sub Category
 if (isset($product['category_id'])) {
-    $request->id = $product['category_id'];
+    $request->parent_id = $product['category_id'];
     $sub_categories = new Client('http://localhost/shoponline/service/Category/SubController.php?wsdl');
     $response = $sub_categories->Check($request);
     if($response->process == 1) {

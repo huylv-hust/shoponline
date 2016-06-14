@@ -1,19 +1,28 @@
 <?php
-//load model
-require_once('admin/models/groups.php');
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->id = '';
+$request->parent = '';
+$request->data = '';
+$request->remove = '';
 
-if (isset($_POST['gid'])) {
-    foreach ($_POST['gid'] as $gid) {
-        $gid = intval($gid);
-        subcategories_delete($gid);
+$sub_categories = new Client('http://localhost/shoponline/service/Category/SubController.php?wsdl');
+$response = $sub_categories->Check($request);
+if($response->process == 1) {
+    $groups = json_decode($response->data, true);
+}
+//Category
+$categories = new Client('http://localhost/shoponline/service/Category/CategoryController.php?wsdl');
+$response = $categories->Check($request);
+if($response->process == 1) {
+    $category = json_decode($response->data, true);
+    $cate = [];
+    foreach ($category as $v) {
+        $cate[$v['id']] = $v['name'];
     }
 }
-$options = array(
-    'order_by' => 'Id'
-);
-//data
+
 $title = 'Danh mục nhóm sản phẩm';
-$user = $_SESSION['user'];
-$groups = get_all('subcategory', $options);
-//load view
+
 require('admin/views/group/index.php');

@@ -224,7 +224,7 @@ class Database {
 		if(isset($id) && $id) {
 			$where .= " AND id = '".$id."'";
 		}
-		$sql = "UPDATE category SET (status = '0') WHERE".$where;
+		$sql = "UPDATE category SET status = '0' WHERE ".$where;
 		$query = mysql_query($sql);
 
 		return $query;
@@ -234,8 +234,13 @@ class Database {
 	public function getSub($filter = []){
 		$where = "status = '1'";
 		if(isset($filter['id']) && $filter['id']) {
-			$where .= " AND parent_id = '".$filter['id']."'";
+			$where .= " AND id = '".$filter['id']."'";
 		}
+		
+		if(isset($filter['parent_id']) && $filter['parent_id']) {
+			$where .= " AND parent_id = '".$filter['parent_id']."'";
+		}
+		
 		$sql = "SELECT * FROM subcategory WHERE ".$where;
 		$query = mysql_query($sql);
 		while ($row = mysql_fetch_assoc($query))
@@ -283,7 +288,7 @@ class Database {
 		if(isset($id) && $id) {
 			$where .= " AND id = '".$id."'";
 		}
-		$sql = "UPDATE subcategory SET (status = '0') WHERE".$where;
+		$sql = "UPDATE subcategory SET status = '0' WHERE ".$where;
 		$query = mysql_query($sql);
 
 		return $query;

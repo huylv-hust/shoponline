@@ -1,17 +1,17 @@
 <?php
-//load model
-require_once('admin/models/categories.php');
-if (isset($_POST['cid'])) {
-    foreach ($_POST['cid'] as $cid) {
-        $cid = intval($cid);
-        categories_delete($cid);
-    }
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->id = '';
+$request->data = '';
+$request->remove = '';
+
+$categories = new Client('http://localhost/shoponline/service/Category/CategoryController.php?wsdl');
+$response = $categories->Check($request);
+if($response->process == 1) {
+    $category = json_decode($response->data, true);
 }
-$options = array(
-    'order_by' => 'Id'
-);
+
 $title = 'Danh mục sản phẩm';
-$user = $_SESSION['user'];
-$categories = get_all('categories', $options);
-//load view
+
 require('admin/views/category/index.php');

@@ -23,23 +23,18 @@
                             <tbody>
                             <?php foreach ($groups as $group): ?>
                                 <tr class="odd gradeX">
-                                    <td><h4 class="item_name"><?php echo $group['Id'] ?></h4></td>
+                                    <td><h4 class="item_name"><?php echo $group['id'] ?></h4></td>
                                     <td>
-                                        <a href="admin.php?controller=group&amp;action=edit&amp;gid=<?php echo $group['Id']; ?>"><?php echo $group['Name']; ?></a>
+                                        <a href="admin.php?controller=group&amp;action=edit&amp;id=<?php echo $group['id']; ?>"><?php echo $group['name']; ?></a>
                                     </td>
                                     <td>
-                                        <?php $category = get_a_record('Categories', $group['CategoryId']);
-                                        if ($category['Id']!=0) {
-                                            echo $category['Name'];
-                                        }
-                                        ?>
-
+                                        <?php echo $cate[$group['parent_id']]; ?>
                                     </td>
-                                    <td><?php echo $group['Link'] ?></td>
+                                    <td><?php echo $group['alias'] ?></td>
                                     <td>
-                                        <a href="admin.php?controller=group&amp;action=edit&amp;gid=<?php echo $group['Id']; ?>"
+                                        <a href="admin.php?controller=group&amp;action=edit&amp;id=<?php echo $group['id']; ?>"
                                            class="text-danger"><i class="glyphicon glyphicon-edit"></i></a>
-                                        <a href="admin.php?controller=group&amp;action=delete&amp;gid=<?php echo $group['Id']; ?>"
+                                        <a href="admin.php?controller=group&amp;action=delete&amp;id=<?php echo $group['id']; ?>"
                                            class="text-danger deleteitem"><i class="glyphicon glyphicon-remove"></i></a>
                                     </td>
                                 </tr>

@@ -15,6 +15,7 @@ class Sub extends SoapServer {
 		$token = $request->token;
 		$data = $request->data;
 		$id = $request->id;
+		$parent = $request->parent;
 		$remove = $request->remove;
 		
 		if($token && !$code) {
@@ -44,10 +45,13 @@ class Sub extends SoapServer {
 				if(!$id) {
 					if(!$data) {
 						//List Sub
+						$filter =[
+							'parent_id' => $parent
+						];
 						if($db->getSub()) {
 							$response->process = 1;
 							$response->message = 'List Sub thành công';
-							$response->data = json_encode($db->getSub());
+							$response->data = json_encode($db->getSub($filter));
 						}else {
 							$response->process = 0;
 							$response->message = 'Không lấy được Sub';
@@ -66,10 +70,14 @@ class Sub extends SoapServer {
 					if(!$data) {
 						if(!$remove) {
 							//List Sub theo Category
-							if($db->getSub(['id' => $id])) {
+							$filter = [
+								'id' => $id,
+								'paren_id' => $parent,
+							];
+							if($db->getSub($filter)) {
 								$response->process = 1;
 								$response->message = 'Lấy 1 Sub thành công';
-								$response->data = json_encode($db->getSub(['id' => $id]));
+								$response->data = json_encode($db->getSub($filter));
 							}else {
 								$response->process = 0;
 								$response->message = 'Không lấy được 1 Sub';

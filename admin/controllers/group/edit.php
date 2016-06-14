@@ -1,25 +1,50 @@
 <?php
-//load model
-require_once('admin/models/groups.php');
-if (!empty($_POST)) {
-    $subcategory = array(
-        'Id' => intval($_POST['id']),
-        'Name' => escape($_POST['name']),
-        'alias' => alias($_POST['name']),
-        'CategoryId' => intval($_POST['category_id']),
-        'Link' => escape($_POST['link'])
-    );
-    save('subcategory', $subcategory);
-    header('location:admin.php?controller=group');
-} else {
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->id = '';
+$request->parent = '';
+$request->data = '';
+$request->remove = '';
+
+if(isset($_GET['id']) && $_GET['id'] && !$_POST) {
+    $request->id = $_GET['id'];
+    $sub_categories = new Client('http://localhost/shoponline/service/Category/SubController.php?wsdl');
+    $response = $sub_categories->Check($request);
+    
+    if($response->process == 1) {
+        $group = json_decode($response->data, true)[0];
+    }
 }
-$categories = get_all('categories', array(
-    'select'=>'Id,Name',
-    'order_by' => 'Id'
-));
-if (isset($_GET['gid'])) $gid = intval($_GET['gid']); else $gid=0;
-$title = ($gid==0) ? 'Thêm nhóm danh mục' : 'Sửa nhóm danh mục';
-$user = $_SESSION['user'];
-$group = get_a_record('subcategory', $gid);
-//load view
+
+//Category
+$request->id = '';
+$categories = new Client('http://localhost/shoponline/service/Category/CategoryController.php?wsdl');
+$response = $categories->Check($request);
+
+if($response->process == 1) {
+    $category = json_decode($response->data, true);
+}
+
+if (!empty($_POST)) {
+    $request->id = isset($_POST['id']) ? $_POST['id'] : '';
+
+    $subcategory = array(
+        'name' => escape($_POST['name']),
+        'status' => 1,
+        'parent_id' => intval($_POST['parent_id']),
+        'alias' => escape($_POST['alias'])
+    );
+
+    $request->data = json_encode($subcategory);
+    $sub_categories = new Client('http://localhost/shoponline/service/Category/SubController.php?wsdl');
+    $response = $sub_categories->Check($request);
+
+    if($response->process == 1){
+        header('location:admin.php?controller=group');
+    }
+}
+
+$title = isset($_GET['id']) ? 'Sửa nhóm danh mục' :'Thêm nhóm danh mục';
+
 require('admin/views/group/edit.php');

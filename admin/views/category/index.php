@@ -20,17 +20,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($categories as $cate): ?>
+                        <?php foreach ($category as $cate): ?>
                             <tr class="odd gradeX">
-                                <td><h4 class="item_name"><?php echo $cate['Id'] ?></h4></td>
+                                <td><?php echo $cate['id'] ?></td>
                                 <td>
-                                    <a href="admin.php?controller=category&amp;action=edit&amp;cid=<?php echo $cate['Id']; ?>"><?php echo $cate['Name']; ?></a>
-                                <td><?php echo $cate['Position'] ?></td>
+                                    <a href="admin.php?controller=category&amp;action=edit&amp;id=<?php echo $cate['id']; ?>"><?php echo $cate['name']; ?></a>
+                                <td><?php echo $cate['position'] ?></td>
                                 <td><?php echo $cate['alias'] ?></td>
                                 <td>
-                                    <a href="admin.php?controller=category&amp;action=edit&amp;cid=<?php echo $cate['Id']; ?>"
+                                    <a href="admin.php?controller=category&amp;action=edit&amp;id=<?php echo $cate['id']; ?>"
                                        class="text-danger"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="admin.php?controller=category&amp;action=delete&amp;cid=<?php echo $cate['Id']; ?>"
+                                    <a href="admin.php?controller=category&amp;action=delete&amp;id=<?php echo $cate['id']; ?>"
                                        class="text-danger deleteitem"><i class="glyphicon glyphicon-remove"></i></a>
                                 </td>
                             </tr>

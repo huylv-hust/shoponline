@@ -1,22 +1,38 @@
 <?php
-//load model
-require_once('admin/models/categories.php');
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->id = '';
+$request->data = '';
+$request->remove = '';
+
+if(isset($_GET['id']) && $_GET['id'] && !$_POST) {
+    $request->id = $_GET['id'];
+    $categories = new Client('http://localhost/shoponline/service/Category/CategoryController.php?wsdl');
+    $response = $categories->Check($request);
+
+    $category = json_decode($response->data, true)[0];
+}
+
 if (!empty($_POST)) {
+    $request->id = isset($_POST['id']) ? $_POST['id'] : '';
+
     $category = array(
-        'Id' => intval($_POST['id']),
-        'Name' => escape($_POST['name']),
-        'alias' => alias($_POST['name']),
-        'Position' => intval($_POST['position']),
+        'name' => escape($_POST['name']),
+        'status' => 1,
+        'position' => intval($_POST['position']),
         'alias' => escape($_POST['link'])
     );
-    save('categories', $category);
-    header('location:admin.php?controller=category');
-} else {
 
+    $request->data = json_encode($category);
+    $categories = new Client('http://localhost/shoponline/service/Category/CategoryController.php?wsdl');
+    $response = $categories->Check($request);
+
+    if($response->process == 1){
+        header('location:admin.php?controller=category');
+    }
 }
-if (isset($_GET['cid'])) $cid = intval($_GET['cid']); else $cid=0;
-$title = ($cid==0) ? 'Thêm danh mục' : 'Sửa danh mục';
-$user = $_SESSION['user'];
-$category = get_a_record('categories', $cid);
-//load view
+
+$title = isset($_GET['id']) ? 'Sửa danh mục' : 'Thêm danh mục';
+
 require('admin/views/category/edit.php');
