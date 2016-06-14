@@ -6,7 +6,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="dataTable_wrapper">
-				<div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Thôn Tin Tài Khoản</div>
+				<div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Thông Tin Tài Khoản</div>
 				<div class="panel-body">
 					<form id="product-form" class="form-horizontal" method="post"
 					      action="admin.php?controller=role&amp;action=edit" enctype="multipart/form-data" role="form">
@@ -42,7 +42,7 @@
 						<div class="form-group">
 							<label for="title" class="col-sm-3 control-label">Địa chỉ</label>
 							<div class="col-sm-9">
-								<input readonly name="address" type="text" value="<?php echo isset($role['name']) ? $role['name'] : ''; ?>"
+								<input readonly name="address" type="text" value="<?php echo isset($role['address']) ? $role['address'] : ''; ?>"
 								       class="form-control" placeholder="Address">
 							</div>
 						</div>
