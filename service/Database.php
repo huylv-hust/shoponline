@@ -165,7 +165,7 @@ class Database {
 		if(isset($id) && $id) {
 			$where .= " AND id = '".$id."'";
 		}
-		$sql = "DELETE FROM product WHERE".$where;
+		$sql = "DELETE FROM product WHERE ".$where;
 		$query = mysql_query($sql);
 
 		return $query;

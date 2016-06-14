@@ -30,7 +30,7 @@
                         <td>
                             <a href="admin.php?controller=product&amp;action=edit&amp;id=<?php echo $product['id']; ?>"
                                class="text-danger"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a href="admin.php?controller=product&amp;action=delete&amp;pid=<?php echo $product['id']; ?>"
+                            <a href="admin.php?controller=product&amp;action=delete&amp;id=<?php echo $product['id']; ?>"
                                class="text-danger deleteitem"><i class="glyphicon glyphicon-remove"></i></a>
                         </td>
                     </tr>
