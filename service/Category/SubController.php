@@ -65,7 +65,7 @@ class Sub extends SoapServer {
 				}else {
 					if(!$data) {
 						if(!$remove) {
-							//List 1 Sub
+							//List Sub theo Category
 							if($db->getSub(['id' => $id])) {
 								$response->process = 1;
 								$response->message = 'Lấy 1 Sub thành công';

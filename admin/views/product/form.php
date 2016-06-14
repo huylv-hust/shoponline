@@ -18,6 +18,7 @@
             <label for="category_id" class="col-sm-3 control-label">Danh mục</label>
             <div class="col-sm-9">
                 <select name="category_id" class="form-control" id="category_id">
+                    <option></option>
                     <?php foreach ($category as $v) {
                         $selected = '';
                         if (isset($product['category_id']) && ($product['category_id'] == $v['id'])) $selected = 'selected';
@@ -29,12 +30,12 @@
         <div class="form-group">
             <label for="sub_category_id" class="col-sm-3 control-label">Danh mục con</label>
             <div class="col-sm-9">
-                <select name="sub_category_id" class="form-control" id="subcategory_id">
-                    <?php foreach ($sub_category as $sub) {
-                        $selected = '';
-                        if (isset($product['sub_categoryid']) && ($product['sub_categoryid'] == $sub['id'])) $selected = 'selected=""';
-                        echo '<option value="'.$sub['id'].'" '.$selected.'>'.$sub['name'].'</option>';
-                    } ?>
+                <select name="sub_category_id" class="form-control" id="sub_category_id">
+                    <option></option>
+                    <?php if(isset($sub_category)) {foreach ($sub_category as $sub) {
+                        $selected = isset($product['sub_category_id']) && ($product['sub_category_id'] == $sub['id']) ? 'selected' : '';
+                        echo '<option value="' . $sub['id'] . '" ' . $selected . '>' . $sub['name'] . '</option>';
+                    }} ?>
                 </select>
             </div>
         </div>
@@ -159,8 +160,9 @@
 <script>
     $(document).ready(function(){
         $("#category_id").change(function(){
-            var cid = $(this).val();
-            $.get("admin/views/product/getcategory.php",{cid:cid},function(data){
+            var id = $(this).val();
+            $.get("admin/views/product/getcategory.php",{id:id},function(data){
+                console.log(data);
                 $("#sub_category_id").html(data);
             });
         });

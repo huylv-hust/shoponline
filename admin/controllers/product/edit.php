@@ -27,11 +27,13 @@ if($response->process == 1) {
     $category = json_decode($response->data, true);
 }
 //Sub Category
-$request->id = '';
-$sub_categories = new Client('http://localhost/shoponline/service/Category/SubController.php?wsdl');
-$response = $sub_categories->Check($request);
-if($response->process == 1) {
-    $sub_category = json_decode($response->data, true);
+if (isset($product['category_id'])) {
+    $request->id = $product['category_id'];
+    $sub_categories = new Client('http://localhost/shoponline/service/Category/SubController.php?wsdl');
+    $response = $sub_categories->Check($request);
+    if($response->process == 1) {
+        $sub_category = json_decode($response->data, true);
+    }
 }
 
 //Creat - Edit

@@ -234,7 +234,7 @@ class Database {
 	public function getSub($filter = []){
 		$where = "status = '1'";
 		if(isset($filter['id']) && $filter['id']) {
-			$where .= " AND id = '".$filter['id']."'";
+			$where .= " AND parent_id = '".$filter['id']."'";
 		}
 		$sql = "SELECT * FROM subcategory WHERE ".$where;
 		$query = mysql_query($sql);
