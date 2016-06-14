@@ -18,7 +18,20 @@ if(isset($_GET['id']) && $_GET['id'] && !$_POST) {
 
 if (!empty($_POST)) {
     $request->id = isset($_POST['id']) ? $_POST['id'] : '';
-    $request->data = json_encode($_POST);
+    $info = [
+        'username' => $_POST['username'],
+        'name' => $_POST['name'],
+        'address' => $_POST['address'],
+        'phone' => $_POST['phone'],
+    ];
+    
+    if($_POST['password'] && $_POST['confirm']) {
+        if($_POST['password'] == $_POST['confirm']) {
+            $info['password'] = sha1($_POST['password']);
+        }
+    }
+    
+    $request->data = json_encode($info);
     $user = new Client('http://localhost/shoponline/service/Users/UsersController.php?wsdl');
     $response = $user->Check($request);
 
@@ -27,6 +40,6 @@ if (!empty($_POST)) {
     }
 }
 
-$title = isset($_GET['id']) ? 'Sửa quyền truy cập' : 'Thêm quyền truy cập';
+$title = isset($_GET['id']) ? 'Thay Đổi Thông Tin' : 'Thêm Tài Khoản';
 
 require('admin/views/role/edit.php');

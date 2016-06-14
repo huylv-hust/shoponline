@@ -58,7 +58,7 @@ class Users extends SoapServer {
 						}
 					}else {
 						//Tạo mới user
-						if(!$db->checkUser(json_decode($data,true)['username']) && $db->createUser(json_decode($data,true))) {
+						if(!$db->checkEmail(json_decode($data,true)['username']) && $db->createUser(json_decode($data,true))) {
 							$response->process = 1;
 							$response->message = 'Tạo User thành công';
 						}else {

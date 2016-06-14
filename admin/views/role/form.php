@@ -3,13 +3,13 @@
         margin: 10px 5px;
     }
 </style>
-<div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Quyền truy cập website</div>
+<div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Thay Đổi Thông Tin</div>
 <div class="panel-body">
     <form id="product-form" class="form-horizontal" method="post"
           action="admin.php?controller=role&amp;action=edit" enctype="multipart/form-data" role="form">
         
         <div class="form-group">
-            <label for="title" class="col-sm-3 control-label">Tên Đăng nhập</label>
+            <label for="title" class="col-sm-3 control-label">Tên Đăng Nhập</label>
             <div class="col-sm-9">
                 <input name="username" type="email" value="<?php echo isset($role['username']) ? $role['username'] : ''; ?>"
                        class="form-control" placeholder="User Name" required="required"/>
@@ -23,6 +23,17 @@
                     <option value="1" <?php echo isset($role['role']) && $role['role'] == 1 ? 'selected' : ''?> >Quản Trị</option>
                     <option value="2" <?php echo isset($role['role']) && $role['role'] == 2 ? 'selected' : ''?> >Người Dùng</option>
                 </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title" class="col-sm-3 control-label">Mật Khẩu</label>
+            <div class="col-sm-9">
+                <input name="password" type="password" class="form-control" placeholder="Mật Khẩu"/>
+            </div>
+        </div><div class="form-group">
+            <label for="title" class="col-sm-3 control-label">Xác nhận mật khẩu</label>
+            <div class="col-sm-9">
+                <input name="confirm" type="password" class="form-control" placeholder="Xác Nhận Mật Khẩu"/>  
             </div>
         </div>
         <div class="form-group">
@@ -40,7 +51,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="title" class="col-sm-3 control-label">Địa chỉ</label>
+            <label for="title" class="col-sm-3 control-label">Địa Chỉ</label>
             <div class="col-sm-9">
                 <input name="address" type="text" value="<?php echo isset($role['name']) ? $role['name'] : ''; ?>"
                        class="form-control" placeholder="Address">
@@ -50,8 +61,8 @@
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
                 <button type="submit"
-                        class="btn btn-primary"><?php echo isset($role) ? 'Cập nhật' : 'Thêm mới'; ?></button>
-                <a class="btn btn-warning" href="admin.php?controller=role">Trở về</a>
+                        class="btn btn-primary"><?php echo isset($role) ? 'Cập Nhật' : 'Thêm Mới'; ?></button>
+                <a class="btn btn-warning" href="admin.php?controller=role">Trở Về</a>
             </div>
         </div>
     </form>

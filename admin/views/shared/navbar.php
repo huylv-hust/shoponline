@@ -121,10 +121,10 @@
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="admin.php?controller=user&amp;action=info&amp;uid=<?php echo $_SESSION['info']['id'];?>"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-                <?php if ($role == 1):?>
-                    <li><a href="admin.php?controller=user&amp;action=list"><i class="fa fa-gear fa-fw"></i>List quản trị</a></li>
-                    <li><a href="admin.php?controller=user&amp;action=add"><i class="fa fa-gear fa-fw"></i>Thêm quản trị</a></li>
+                <li><a href="admin.php?controller=role&amp;action=info&amp;id=<?php echo $_SESSION['info']['id'];?>"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                <?php if ($_SESSION['info']['role'] == 1):?>
+                    <li><a href="admin.php?controller=role"><i class="fa fa-gear fa-fw"></i>List quản trị</a></li>
+                    <li><a href="admin.php?controller=role&amp;action=edit"><i class="fa fa-gear fa-fw"></i>Thêm quản trị</a></li>
                 <?php endif;?>
                 <li class="divider"></li>
                 <li> <a href="admin.php?controller=home&amp;action=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -152,7 +152,7 @@
                 </li>
                 <?php if ($_SESSION['role'] == 1){?>
                     <li>
-                        <a href="admin.php?controller=role"><i class="fa fa-cog fa-fw"></i> Quyền truy cập</a>
+                        <a href="admin.php?controller=role"><i class="fa fa-cog fa-fw"></i> Quản lý tài khoản</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Cấu hình website<span class="fa arrow"></span></a>
@@ -204,10 +204,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="admin.php?controller=category"><i class="fa fa-folder-open fa-fw"></i>Quản lý danh mục sản phẩm</a>
+                    <a href="admin.php?controller=category"><i class="fa fa-folder-open fa-fw"></i>Quản lý danh mục</a>
                 </li>
                 <li>
-                    <a href="admin.php?controller=group"><i class="fa fa-folder-open fa-fw"></i>Quản lý nhóm danh mục</a>
+                    <a href="admin.php?controller=group"><i class="fa fa-folder-open fa-fw"></i>Quản lý danh mục con</a>
                 </li>
                 <li>
                     <a href="admin.php?controller=livesport"><i class="fa fa-youtube-play fa-fw"></i> Quản lý phát video</a>

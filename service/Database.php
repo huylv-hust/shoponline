@@ -31,14 +31,17 @@ class Database {
 	}
 
 //User
-	public function checkUser($email, $password = ''){
-		if($password){
-			$sql = "SELECT * FROM user WHERE username = '".$email."' AND password = '".$password."'";
-		}else{
-			$sql = "SELECT * FROM user WHERE username = '".$email."'";
-		}
+	public function checkUser($email, $password){
+		$sql = "SELECT * FROM user WHERE username = '".$email."' AND password = '".$password."'";
 		$query = mysql_query($sql);
 
+		return mysql_fetch_assoc($query);
+	}
+	
+	public function checkEmail($email){
+		$sql = "SELECT * FROM user WHERE username = '".$email."'";
+		$query = mysql_query($sql);
+		
 		return mysql_fetch_assoc($query);
 	}
 	

@@ -11,7 +11,7 @@ $request->remove = '';
 
 if (!empty($_POST)) {
     $request->email = $_POST['email'];
-    $request->pass = $_POST['password'];
+    $request->pass = sha1($_POST['password']);
     
     $user = new Client('http://localhost/shoponline/service/Users/UsersController.php?wsdl');
     $response = $user->Check($request);

@@ -1,7 +1,6 @@
 <?php
 //data
 $title = 'Quản trị hệ thống';
-$role = $_SESSION['role'];
 
 $optionsCom = array(
     'order_by' => 'id DESC'
@@ -80,5 +79,24 @@ $options_order_new = array(
     'order_by' => 'Id DESC'
 );
 $order_new = Selecct_a_record('orders', $options_order_new);
+
+//newproduct
+$request = new Request();
+$request->code = $_SESSION['user'];
+$request->token = '';
+$request->data = '';
+$request->id = '';
+$request->type = 1;
+$request->category_id = '';
+$request->sub_category_id = '';
+$request->remove = '';
+
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
+
+if($response->process == 1){
+	$products = json_decode($response->data, true);
+}
+
 //load view
 require('admin/views/home/index.php');
