@@ -1,9 +1,5 @@
 <?php
-$options_parent_menu = array(
-    'order_by' => 'Id'
-);
-$parent_menus = get_all('categories',$options_parent_menu);
-
+require('E:/Xampp/htdocs/shoponline/website/controllers/home/category.php');
 ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -58,32 +54,32 @@ $parent_menus = get_all('categories',$options_parent_menu);
         </div>
     </div>
 </div>
-<nav id="top">
-    <div class="container">
-        <div id="top-links" class="nav pull-right">
-            <ul class="list-inline">
-                <li><a href="contact""><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md">0984787652</span></li>
-                <li class="dropdown"><a href="signin" title="Tài Khoản Của Bạn" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">Tài Khoản Của Bạn</span> <span class="caret"></span></a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <?php if (isset($logged)) { ?>
-                            <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-                            <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-                            <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-                            <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-                            <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
-                        <?php } else { ?>
-                            <li><a href="signup">Đăng Ký</a></li>
-                            <li><a href="signin">Đăng Nhập</a></li>
-                        <?php } ?>
-                    </ul>
-                </li>
-                <li><a href="wishlist" id="wishlist-total" title="Yêu Thích"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">Yêu Thích</span></a></li>
-                <li><a href="cart" title="Giỏ Hàng"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Giỏ Hàng</span></a></li>
-                <li><a href="checkout" title="Thanh Toán"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">Thanh Toán</span></a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<!--<nav id="top">-->
+<!--    <div class="container">-->
+<!--        <div id="top-links" class="nav pull-right">-->
+<!--            <ul class="list-inline">-->
+<!--                <li><a href="contact""><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md">0984787652</span></li>-->
+<!--                <li class="dropdown"><a href="signin" title="Tài Khoản Của Bạn" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">Tài Khoản Của Bạn</span> <span class="caret"></span></a>-->
+<!--                    <ul class="dropdown-menu dropdown-menu-right">-->
+<!--                        --><?php //if (isset($logged)) { ?>
+<!--                            <li><a href="--><?php //echo $account; ?><!--">--><?php //echo $text_account; ?><!--</a></li>-->
+<!--                            <li><a href="--><?php //echo $order; ?><!--">--><?php //echo $text_order; ?><!--</a></li>-->
+<!--                            <li><a href="--><?php //echo $transaction; ?><!--">--><?php //echo $text_transaction; ?><!--</a></li>-->
+<!--                            <li><a href="--><?php //echo $download; ?><!--">--><?php //echo $text_download; ?><!--</a></li>-->
+<!--                            <li><a href="--><?php //echo $logout; ?><!--">--><?php //echo $text_logout; ?><!--</a></li>-->
+<!--                        --><?php //} else { ?>
+<!--                            <li><a href="signup">Đăng Ký</a></li>-->
+<!--                            <li><a href="signin">Đăng Nhập</a></li>-->
+<!--                        --><?php //} ?>
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li><a href="wishlist" id="wishlist-total" title="Yêu Thích"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">Yêu Thích</span></a></li>-->
+<!--                <li><a href="cart" title="Giỏ Hàng"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Giỏ Hàng</span></a></li>-->
+<!--                <li><a href="checkout" title="Thanh Toán"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">Thanh Toán</span></a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 <div class="header-top">
     <div class="header-bottom">
         <div class="container">
@@ -102,42 +98,31 @@ $parent_menus = get_all('categories',$options_parent_menu);
             </div>
             <div class="cart box_1 col-sm-3">
                 <a href="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Giỏ hàng : <?php echo cart_number(); ?> sp</a>
-                <div class="clearfix"></div>
             </div>
         </div>
         <div class="container">
             <div class="top-nav">
-                <ul class="memenu skyblue">
+                <ul class="memenu ">
                     <li><a href="home">Trang chủ</a></li>
-                    <?php foreach ($parent_menus as $parent_menu): $parentId = $parent_menu['Id']; ?>
-                        <?php if ($parent_menu['Id'] != 3): ?>
+                    <?php foreach ($category as $cate){ ?>
                             <li class="grid"><a
-                                        href="group/<?php echo $parent_menu['Id'] ?>-<?php echo $parent_menu['alias'] ?>.html"><?php echo $parent_menu['Name'] ?></a>
-
+                                        href="group/<?php echo $cate['id'] ?>-<?php echo $cate['alias'] ?>.html"><?php echo $cate['name'] ?></a>
                                 <div class="mepanel">
                                     <ul class="row">
                                         <?php
-                                        $optionmenus = array(
-                                                'where' => 'CategoryId=' . $parent_menu['Id'] . ' ' . 'and pId = 0',
-                                        );
-                                        $_rowmenus = get_all('subcategory', $optionmenus)
-                                        ?>
-                                        <?php foreach ($_rowmenus as $_rowmenu): ?>
-                                            <li class="col1 me-one">
-                                                <h4>
-                                                    <a href="category/<?php echo $_rowmenu['Id'] ?>-<?php echo $_rowmenu['alias'] ?>.html"><?php echo $_rowmenu['Name'] ?></a>
-                                                </h4>
-                                            </li>
-                                        <?php endforeach; ?>
+                                        require('E:/Xampp/htdocs/shoponline/website/controllers/home/subcategory.php');
+                                        if(isset($groups)){
+                                            foreach ($groups as $group){ ?>
+                                                <li class="col1 me-one">
+                                                    <h4>
+                                                        <a href="category/<?php echo $group['id'] ?>-<?php echo $group['alias'] ?>.html"><?php echo $group['name'] ?></a>
+                                                    </h4>
+                                                </li>
+                                        <?php }} ?>
                                     </ul>
                                 </div>
                             </li>
-                        <?php elseif ($parent_menu['Id'] == 3): ?>
-                            <li class="grid"><a
-                                        href="group/<?php echo $parent_menu['Id'] ?>-<?php echo $parent_menu['alias'] ?>.html"><?php echo $parent_menu['Name'] ?></a>
-                            </li>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                    <?php } ?>
                     <li><a href="livesport">Live sport</a></li>
                 </ul>
             </div>

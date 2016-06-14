@@ -4,29 +4,41 @@ $banner_right = get_a_record('banner',2);
 $banner_ads = get_a_record('banner',3);
 $slideshow = get_a_record('slideshow',1);
 
-$options_orderproduct = array(
-    'where' => 'TypeId = 1',
-    'limit' => '16',
-    'offset' => '0',
-    'order_by' => 'Createdate DESC'
-);
-$order_products = get_all('product',$options_orderproduct);
+//new
+$request = new Request();
+$request->code = '';
+$request->token = $_SESSION['token'];
+$request->data = '';
+$request->id = '';
+$request->type = 1;
+$request->category_id = '';
+$request->sub_category_id = '';
+$request->remove = '';
 
-$options_newproduct = array(
-    'where' => 'TypeId = 2',
-    'limit' => '16',
-    'offset' => '0',
-    'order_by' => 'Createdate DESC'
-);
-$new_products = get_all('product',$options_newproduct);
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
 
-$options_saleproduct = array(
-    'where' => 'TypeId = 3',
-    'limit' => '16',
-    'offset' => '0',
-    'order_by' => 'Createdate DESC'
-);
-$saleoff_products = get_all('product',$options_saleproduct);
+if($response->process == 1){
+    $new_products = json_decode($response->data, true);
+}
+
+//order
+$request->type = 2;
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
+
+if($response->process == 1){
+    $order_products = json_decode($response->data, true);
+}
+
+//sale
+$request->type = 3;
+$user = new Client('http://localhost/shoponline/service/Products/ProductsController.php?wsdl');
+$response = $user->Check($request);
+
+if($response->process == 1){
+    $saleoff_products = json_decode($response->data, true);
+}
 
 $title = 'Trang chủ';
 require('website/views/home/index.php');

@@ -5,8 +5,11 @@ require_once('lib/Request.php');
 require_once('website/models/cart.php');
 require "lib/header.php";
 require "lib/counter.php";
+require_once('lib/Request.php');
+require_once('lib/Client.php');
 $count_file='counter.txt';
 $ip_file = 'ip.txt';
+$_SESSION['token'] = 'ZXlKemFXZHVJam9pYUhWNWJIWWlmUT09ZXlKbGJXRnBiQ0k2SWpUX3MyX0hpTldFelpHVTRaREptWXpBelptTTJOVGxqTXpRM01XSTNaRGN3WVdReklpd2lkR2xIX3MyX1RaU0k2TVRRMk9ERXlORGt5TUN3aWNHRnpjM2R2Y21RaU9pSWlmUT09';
 function counting_ip(){
     $ip= $_SERVER['REMOTE_ADDR'];
     global $count_file, $ip_file;

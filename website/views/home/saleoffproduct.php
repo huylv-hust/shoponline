@@ -10,30 +10,30 @@
             <?php endif; ?>
             <?php foreach ($saleoff_products as $saleoff_product): ?>
                 <div class="col-md-3 feature-grid jewel">
-                    <a href="product/<?php echo $saleoff_product['Id']; ?>-<?php echo $order_product['alias']; ?>.html" class="screenshot"
-                       rel="<?php echo 'public/upload/product/' . $saleoff_product['Image1'] ?>"><?php echo '<image src="public/upload/product/' . $saleoff_product['Image1'] . '?time=' . time() . '"alt="' . $saleoff_product['Image1'] . '" />'; ?>
+                    <a href="product/<?php echo $saleoff_product['id']; ?>-<?php echo $order_product['alias']; ?>.html" class="screenshot"
+                       rel="<?php echo 'public/upload/product/' . $saleoff_product['image1'] ?>"><?php echo '<image src="public/upload/product/' . $saleoff_product['image1'] . '?time=' . time() . '"alt="' . $saleoff_product['image1'] . '" />'; ?>
                     </a>
 
                     <div class="arrival-info">
-                        <h4><?php echo $saleoff_product['Name'] ?></h4>
+                        <h4><?php echo $saleoff_product['name'] ?></h4>
                     <span class="pric1"><del>Giá bán
-                            : <?php echo $saleoff_product ? number_format($saleoff_product['Price'], 0, ',', '.') : 0; ?> vnđ
+                            : <?php echo $saleoff_product ? number_format($saleoff_product['price'], 0, ',', '.') : 0; ?> vnđ
                         </del></span>
 
-                        <p>Giá khuyến mại : <?php echo $saleoff_product ? number_format(($saleoff_product['Price']) - ($saleoff_product['Price']) * ($saleoff_product['Percent_off']) / 100, 0, ',', '.') : 0; ?>
+                        <p>Giá khuyến mại : <?php echo $saleoff_product ? number_format(($saleoff_product['price']) - ($saleoff_product['price']) * ($saleoff_product['percent_off']) / 100, 0, ',', '.') : 0; ?>
                             vnđ</p>
                     </div>
 
                     <div class="viw">
-                        <a href="product/<?php echo $saleoff_product['Id']; ?>-<?php echo $saleoff_product['alias']; ?>.html"><span
+                        <a href="product/<?php echo $saleoff_product['id']; ?>-<?php echo $saleoff_product['alias']; ?>.html"><span
                                 class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick
                             View</a>
                     </div>
-                    <?php if ($saleoff_product["TypeId"] == 3): ?>
+                    <?php if ($saleoff_product["type"] == 3): ?>
                         <div class="shrt">
-                            <a href="product/<?php echo $saleoff_product['Id']; ?>-<?php echo $saleoff_product['alias']; ?>.html"><span
+                            <a href="product/<?php echo $saleoff_product['id']; ?>-<?php echo $saleoff_product['alias']; ?>.html"><span
                                     class="glyphicon glyphicon-star"
-                                    aria-hidden="true"></span>Saleoff <?php echo $saleoff_product['Percent_off']; ?>%</a>
+                                    aria-hidden="true"></span>Saleoff <?php echo $saleoff_product['percent_off']; ?>%</a>
                         </div>
                     <?php endif; ?>
                     </a>

@@ -135,13 +135,13 @@ $contactinfo = get_a_record('contactinfo',1);
     }
     (document, 'script', 'facebook-jssdk'));
 </script>
-<div class="fb-chat-popup">
-    <div class="fb-page-header"><i class="fa fa-comments"></i> Hỗ Trợ Trực Tuyến</div>
-    <div class="fb-page-box">
-        <div class="fb-page" data-href="https://www.facebook.com/FCTueTinh" data-height="350" data-width="300" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false" data-tabs="messages" data-show-posts="false"></div>
-        <div class="chat-single"><a target="_blank" href="https://www.facebook.com/FCTueTinh"><i class="fa fa-facebook-square"></i> Fanpage Blog</a></div>
-    </div>
-</div>
+<!--<div class="fb-chat-popup">-->
+<!--    <div class="fb-page-header"><i class="fa fa-comments"></i> Hỗ Trợ Trực Tuyến</div>-->
+<!--    <div class="fb-page-box">-->
+<!--        <div class="fb-page" data-href="https://www.facebook.com/FCTueTinh" data-height="350" data-width="300" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false" data-tabs="messages" data-show-posts="false"></div>-->
+<!--        <div class="chat-single"><a target="_blank" href="https://www.facebook.com/FCTueTinh"><i class="fa fa-facebook-square"></i> Fanpage Blog</a></div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <script src="<?=PATH_URL?>/public/js/responsiveslides.min.js"></script>
 <script type="text/javascript" src="<?=PATH_URL?>/public/js/memenu.js"></script>

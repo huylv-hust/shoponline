@@ -22,11 +22,14 @@ class Sub extends SoapServer {
 			//List Sub Frontend
 			$de_code = $encrypt->Decode($token);
 			if($de_code['email'] && $de_code['time'] >= time()) {
+				$filter = [
+					'parent_id' => $parent
+				];
 				//đã đăng ký và còn hạn sử dụng
 				if($db->getSub()) {
 					$response->process = 1;
 					$response->message = 'List Sub thành công';
-					$response->data = json_encode($db->getSub());
+					$response->data = json_encode($db->getSub($filter));
 				}else {
 					$response->process = 0;
 					$response->message = 'Không lấy được Sub';

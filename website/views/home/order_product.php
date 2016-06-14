@@ -10,17 +10,17 @@
             <?php endif; ?>
             <?php foreach ($order_products as $order_product): ?>
                 <div class="col-md-3 feature-grid jewel">
-                    <a href="product/<?php echo $order_product['Id']; ?>-<?php echo $order_product['alias']; ?>.html" class="screenshot"
-                       rel="<?php echo 'public/upload/product/' . $order_product['Image1'] ?>"><?php echo '<image src="public/upload/product/' . $order_product['Image1'] . '?time=' . time() . '"alt="' . $order_product['Image1'] . '" />'; ?>
+                    <a href="product/<?php echo $order_product['id']; ?>-<?php echo $order_product['alias']; ?>.html" class="screenshot"
+                       rel="<?php echo 'public/upload/product/' . $order_product['Image1'] ?>"><?php echo '<image src="public/upload/product/' . $order_product['image1'] . '?time=' . time() . '"alt="' . $order_product['image1'] . '" />'; ?>
                     </a>
 
                     <div class="arrival-info">
-                        <h4><?php echo $order_product['Name']?></h4>
+                        <h4><?php echo $order_product['name']?></h4>
 
-                        <p>Giá bán : <?php echo $order_product ? number_format($order_product['Price'], 0, ',', '.') : 0; ?> vnđ</p>
+                        <p>Giá bán : <?php echo $order_product ? number_format($order_product['price'], 0, ',', '.') : 0; ?> vnđ</p>
                     </div>
                     <div class="viw">
-                        <a href="product/view/<?php echo $order_product['Id']; ?>-<?php echo $order_product['alias']; ?>.html"><span
+                        <a href="product/view/<?php echo $order_product['id']; ?>-<?php echo $order_product['alias']; ?>.html"><span
                                 class="glyphicon glyphicon-eye-open"
                                 aria-hidden="true"></span>Quick
                             View</a>
